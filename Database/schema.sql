@@ -49,3 +49,14 @@ CREATE TABLE addresses (
     user_id INT,
     FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
+
+
+CREATE TABLE payments (
+	payment_id INT AUTO_INCREMENT PRIMARY KEY, 
+    transaction_id VARCHAR(50) UNIQUE, 
+    amount DECIMAL(10, 2) NOT NULL, 
+    payment_date DATETIME DEFAULT NOW() NOT NULL, 
+    payment_method VARCHAR(50) NOT NULL,
+    user_id INT,
+    FOREIGN KEY(user_id) REFERENCES users(user_id)
+);
