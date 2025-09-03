@@ -1,0 +1,38 @@
+#search-results {
+  position: absolute; /* Positions dropdown below search box */
+  top: 100%; /* Places it right below parent element */
+  background: white; /* White background so text is readable */
+  border: 1px solid #ddd; /* Gray border around dropdown */
+  z-index: 1000; /* Ensures dropdown appears above other elements */
+  list-style: none; /* Removes bullet points from <li> elements */
+  padding: 0; /* Removes default padding */
+  margin: 0; /* Removes default margin */
+}
+
+#search-results li {
+  padding: 8px 12px; /* Adds spacing inside each result item */
+  cursor: pointer; /* Changes cursor to hand when hovering */
+}
+
+#search-results li:hover {
+  background-color: #f8f9fa; /* Light gray background on hover */
+}
+
+.form-floating {
+  position: relative;
+}
+
+.logo {
+  font-size: 60px;
+}
+
+#offcanvas-btn {
+  background-color: white;
+  border-width: 0px;
+  border-color: white;
+  font-size: 30px;
+}
+
+#offcanvas-btn:active {
+  background-color: black;
+}

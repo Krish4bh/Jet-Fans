@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login / Register</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="Authorization.css" />
+  </head>
+  <body>
+    <div>
+      <nav class="navbar navbar-light fixed-top">
+        <div class="container-fluid d-flex justify-content-center">
+          <a href="../Home-Page/home.html" class="navbar-brand me-0" id="logo"
+            >Jet Fans</a
+          >
+        </div>
+      </nav>
+    </div>
+
+    <div
+      class="container-fluid vh-100 d-flex align-items-center justify-content-center"
+    >
+      <form
+        action="submit"
+        class="p-4 border rounded-3 bg-white shadow-sm"
+        id="form"
+      >
+        <div id="nav-tabs" class="d-flex justify-content-center">
+          <ul class="nav nav-pills nav-fill" id="ul-tabs">
+            <li class="nav-item mx-3 login-pill">
+              <a href="#" class="nav-link active" id="login-tab">Login</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" id="register-tab">Register</a>
+            </li>
+          </ul>
+        </div>
+        <div id="tab-content">
+          <div id="login-content">
+            <div class="d-flex justify-content-center mt-3 heading">
+              <p class="heading">Welcome Back</p>
+            </div>
+            <div class="form-floating">
+              <input
+                type="text"
+                class="form-control mb-1"
+                id="lg-email-input"
+                placeholder="Email"
+              />
+              <label for="email-input" class="form-label" id="label"
+                >Email</label
+              >
+            </div>
+
+            <div>
+              <p class="error-msg d-none ps-3" id="lg-email-error"></p>
+            </div>
+
+            <div class="form-floating">
+              <input
+                type="password"
+                name="password"
+                id="lg-password-input"
+                class="form-control mt-3"
+                placeholder="Password"
+              />
+              <label for="password-input" class="form-label" id="label"
+                >Password</label
+              >
+            </div>
+
+            <div class="ps-3">
+              <p class="error-msg d-none" id="lg-password-error"></p>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn mt-3" id="submit-btn">
+                Submit
+              </button>
+            </div>
+          </div>
+
+          <div class="d-none" id="register-content">
+            <div class="d-flex justify-content-center mt-3 heading">
+              <p class="heading">Create an Account</p>
+            </div>
+
+            <div class="row">
+              <d class="col-8">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    name="name"
+                    id="name-input"
+                    class="form-control mb-1"
+                    placeholder="Full Name"
+                  />
+                  <label for="name-input" id="label">Full Name</label>
+                </div>
+
+                <div>
+                  <p class="error-msg d-none ps-3 mb-0" id="name-error"></p>
+                </div>
+              </d iv>
+              <div class="col-4">
+                <div class="form-floating">
+                  <input
+                    type="number"
+                    name="age"
+                    class="form-control mb-1"
+                    id="age-input"
+                    placeholder="Age"
+                  />
+                  <label for="age-input" id="label">Age</label>
+                </div>
+
+                <div>
+                  <p class="error-msg d-none ps-3 mb-0" id="age-error"></p>
+                </div>
+              </div>
+            </div>
+            <div class="form-floating mt-3">
+              <input
+                type="text"
+                name="Email"
+                id="reg-email-input"
+                class="form-control"
+                placeholder="Email"
+              />
+              <label for="reg-email-input" id="label">Email</label>
+            </div>
+
+            <div>
+              <p class="error-msg d-none ps-3" id="reg-email-error"></p>
+            </div>
+            <div class="row my-3">
+              <div class="col-12 col-lg-6">
+                <div class="form-floating">
+                  <input
+                    type="password"
+                    name="password"
+                    id="reg-password-input"
+                    class="form-control"
+                    placeholder="Password"
+                  />
+                  <label for="reg-password-input" id="label">Password</label>
+                </div>
+                <div>
+                  <p class="error-msg d-none ps-3" id="reg-password-error"></p>
+                </div>
+              </div>
+
+              <div class="col-12 col-lg-6">
+                <div class="form-floating mt-lg-0">
+                  <input
+                    type="password"
+                    name="password"
+                    id="confirm-password-input"
+                    class="form-control"
+                    placeholder="Confirm Password"
+                  />
+                  <label for="confirm-password-input" id="label"
+                    >Confirm Password</label
+                  >
+                </div>
+                <div>
+                  <p class="error-msg d-none ps-3" id="confirm-password-error"></p>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn" id="submit-btn">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="Authorization.js"></script>
+  </body>
+</html>
