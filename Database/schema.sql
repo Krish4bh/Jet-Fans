@@ -60,3 +60,15 @@ CREATE TABLE payments (
     user_id INT,
     FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
+
+
+CREATE TABLE feedbacks (
+	feedback_id INT AUTO_INCREMENT PRIMARY KEY, 
+    rating INT, 
+    comment TEXT, 
+    user_id INT, 
+    product_id INT, 
+    FOREIGN KEY(user_id) REFERENCES users(user_id), 
+    FOREIGN KEY(product_id) REFERENCES products(product_id), 
+    CHECK (rating BETWEEN 1 AND 5)
+);
