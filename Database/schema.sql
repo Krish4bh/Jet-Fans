@@ -7,7 +7,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE products (
-	products_id INT AUTO_INCREMENT PRIMARY KEY, 
+	product_id INT AUTO_INCREMENT PRIMARY KEY, 
     product_name VARCHAR(150) NOT NULL, 
     price DECIMAL(10, 2) NOT NULL, 
     description VARCHAR(1000), 
@@ -15,5 +15,10 @@ CREATE TABLE products (
     FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 
-
-SELECT * FROM users;
+CREATE TABLE cart (
+	cart_id INT AUTO_INCREMENT PRIMARY KEY,
+    total_price DECIMAL(10, 2) NOT NULL, 
+    product_names VARCHAR(200) NOT NULL, 
+    user_id INT,
+    FOREIGN KEY(user_id) REFERENCES users(user_id)
+);
