@@ -40,3 +40,13 @@ body {
 #offcanvas-btn:active {
   background-color: black;
 }
+
+.card {
+  width: 15rem;
+  height: auto;
+}
+
+.fixed-img {
+  height: 200x;
+  object-fit: cover;
+}
