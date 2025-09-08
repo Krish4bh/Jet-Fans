@@ -18,6 +18,10 @@
   background-color: #f8f9fa; /* Light gray background on hover */
 }
 
+body {
+  padding-top: 150px;
+}
+
 .form-floating {
   position: relative;
 }
