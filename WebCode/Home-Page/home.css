@@ -59,3 +59,9 @@ body {
   border-color: black;
   border-radius: 0;
 }
+
+#LogIn-link,
+#ContactUs-link,
+#ShoppingCart-link {
+  color: black !important;
+}
