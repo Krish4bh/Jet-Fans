@@ -19,7 +19,7 @@
 }
 
 body {
-  padding-top: 100px;
+  padding-top: 105px;
 }
 
 .form-floating {
@@ -49,4 +49,13 @@ body {
 .fixed-img {
   height: 200x;
   object-fit: cover;
+}
+
+#search-input {
+  border-bottom-width: 3px;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-left-width: 0px;
+  border-color: black;
+  border-radius: 0;
 }
