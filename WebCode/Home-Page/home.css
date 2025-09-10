@@ -68,4 +68,16 @@ body {
 
 #shop-now-btn:hover {
   border: 1px solid black;
+  color: whitesmoke;
+  background-color: black;
+}
+
+#shop-now-btn {
+  border: 1px solid black;
+  color: black;
+  background-color: white;
+}
+
+#hero-section {
+  height: 500px;
 }
