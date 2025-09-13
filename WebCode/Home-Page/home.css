@@ -105,3 +105,13 @@ body {
   object-fit: contain;
   object-position: center;
 }
+
+#reviews {
+  height: 288px;
+  background-color: rgb(232, 232, 232);
+}
+
+#hero-section,
+#about {
+  background-color: rgb(242, 242, 242);
+}
