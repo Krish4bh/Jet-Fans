@@ -1,0 +1,31 @@
+#contact-us {
+  font-size: 50px;
+}
+
+#icon {
+  font-size: 50px;
+  color: rgb(201, 201, 201);
+}
+
+.contact-us-container {
+  margin-right: 250px;
+  margin-left: 250px;
+  margin-top: 50px;
+}
+
+#headings {
+  letter-spacing: 4px;
+}
+
+#info {
+  font-size: 18px;
+  color: rgb(171, 171, 171);
+}
+
+#social-media-icons {
+  font-size: 20px;
+}
+
+.follow-us {
+  margin-top: 40px;
+}
