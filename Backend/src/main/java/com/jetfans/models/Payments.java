@@ -1,4 +1,4 @@
-package models;
+package com.jetfans.models;
 
 public class Payments {
 
