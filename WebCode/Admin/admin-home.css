@@ -1,0 +1,15 @@
+#manage-btn {
+  border-color: white !important;
+}
+
+#manage-btn.active {
+  border-color: black !important;
+  background-color: white !important;
+  color: black !important;
+}
+
+#manage-btn:hover {
+  border-color: black !important;
+  background-color: white !important;
+  color: black !important;
+}
