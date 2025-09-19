@@ -64,6 +64,32 @@
       </ul>
     </nav>
 
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h5 class="fw-medium text-center me-5">Manage Admins</h5>
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="ps-5" scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th class="ps-3" scope="col">Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="admin : ${admin}">
+                <td scope="row" th:text="${admin.id}"></td>
+                <td scope="row" th:text="${admin.name}"></td>
+                <td scope="row" th:text="${admin.email}"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+      </div>
+    </div>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
