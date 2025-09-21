@@ -102,15 +102,18 @@
                 ></td>
                 <td scope="row">
                   <div class="d-flex align-items-center justify-content-around">
-                    <a href=""
-                      ><i
-                        class="bi bi-pencil-square fs-3"
-                        th:href="@{'/update/admin/' + ${admin.id}}"
-                      ></i
-                    ></a>
+                    <a
+                      class=""
+                      th:href="@{'/update/admin/' + ${admin.admin_id}}"
+                      id="admin-edit-btn"
+                      data-bs-toggle="modal"
+                      data-bs-target="#admin-edit-modal"
+                    >
+                      <i class="bi bi-pencil-square fs-3"></i>
+                    </a>
                     <button
                       class="btn btn-danger"
-                      th:href="@{'/delete/admin/' + ${admin.id} }"
+                      th:href="@{'/delete/admin/' + ${admin.admin_id} }"
                     >
                       Delete
                     </button>
@@ -146,6 +149,89 @@
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="admin-edit-modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Admin</h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="submit">
+              <div class="mb-3">
+                <div class="row align-items-center justify-content-center">
+                  <div class="col-auto">
+                    <label
+                      for="Name"
+                      class="form-label fw-medium fs-5 my-0 me-5"
+                      >Name:</label
+                    >
+                  </div>
+                  <div class="col-auto">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Name"
+                      id="admin-edit-input"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="row align-items-center justify-content-center">
+                  <div class="col-auto">
+                    <label
+                      for="Email"
+                      class="form-label fw-medium fs-5 my-0 me-5"
+                      >Email:</label
+                    >
+                  </div>
+                  <div class="col-auto">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Email"
+                      id="admin-edit-input"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="row align-items-center justify-content-center">
+                  <div class="col-auto">
+                    <label
+                      for="Password"
+                      class="form-label fw-medium fs-5 my-0 me-2"
+                      >Password:</label
+                    >
+                  </div>
+                  <div class="col-auto">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="admin-edit-input"
+                      placeholder="Password"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="row align-items-center justify-content-center">
+                  <div class="col-auto">
+                    <button class="btn btn-success">Save</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
