@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,12 +11,13 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="admin-home.css" />
+    <link rel="stylesheet" th:href="@{/css/admin-home.css}" />
   </head>
   <body>
     <nav class="navbar">
@@ -73,18 +74,18 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col">
-          <h5 class="fw-medium text-center me-2">Manage Admins</h5>
-          <table class="table table-bordered table-hover mb-0">
+          <h5 class="fw-medium text-center me-5">Manage Admins</h5>
+          <table class="table table-bordered mb-0">
             <thead>
               <tr>
                 <th class="" scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th class="" scope="col">Email</th>
-                <th scope="col">Actions</th>
+                <th class="" scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr th:each="admin : ${admin}">
+              <tr th:each="admin : ${admins}">
                 <td
                   class="text-body-secondary"
                   scope="row"
@@ -100,20 +101,22 @@
                   scope="row"
                   th:text="${admin.email}"
                 ></td>
-                <td scope="row">
+                <td class="" scope="row">
                   <div class="d-flex align-items-center justify-content-around">
-                    <a
-                      class=""
-                      th:href="@{'/update/admin/' + ${admin.admin_id}}"
+                    <button
                       id="admin-edit-btn"
                       data-bs-toggle="modal"
                       data-bs-target="#admin-edit-modal"
+                      th:data-admin-id="${admin.id}"
+                      th:data-admin-name="${admin.name}"
+                      th:data-admin-email="${admin.email}"
+                      onclick="populateModal(this)"
                     >
                       <i class="bi bi-pencil-square fs-3"></i>
-                    </a>
+                    </button>
                     <button
                       class="btn btn-danger"
-                      th:href="@{'/delete/admin/' + ${admin.admin_id} }"
+                      th:href="@{'/delete/admin/' + ${admin.id} }"
                     >
                       Delete
                     </button>
@@ -123,15 +126,20 @@
             </tbody>
           </table>
           <div>
-            <button class="bg-dark" id="add-admin-btn" th:href="/add/admin">
+            <button
+              class="bg-dark"
+              id="add-admin-btn"
+              data-bs-toggle="modal"
+              data-bs-target="#add-admin-modal"
+            >
               Add Admin
             </button>
           </div>
         </div>
         <div class="col-3"></div>
         <div class="col-4">
-          <h5 class="fw-medium text-center">Statistics</h5>
-          <table class="table table-bordered table-hover">
+          <h5 class="text-center">Statistics</h5>
+          <table class="table table-bordered">
             <thead>
               <tr>
                 <th scope="col">Users</th>
@@ -142,10 +150,10 @@
             </thead>
             <tbody>
               <tr>
-                <td class="text-body-secondary" scope="row" th:text=""></td>
-                <td class="text-body-secondary" scope="row" th:text=""></td>
-                <td class="text-body-secondary" scope="row" th:text=""></td>
-                <td class="text-body-secondary" scope="row" th:text=""></td>
+                <td class="text-body-secondary" scope="row"></td>
+                <td class="text-body-secondary" scope="row"></td>
+                <td class="text-body-secondary" scope="row"></td>
+                <td class="text-body-secondary" scope="row"></td>
               </tr>
             </tbody>
           </table>
@@ -165,12 +173,13 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form action="submit">
+            <form th:action="@{/update/admin}" method="post">
+              <input type="hidden" name="id" id="editId" />
               <div class="mb-3">
                 <div class="row align-items-center justify-content-center">
                   <div class="col-auto">
                     <label
-                      for="Name"
+                      for="editname"
                       class="form-label fw-medium fs-5 my-0 me-5"
                       >Name:</label
                     >
@@ -178,9 +187,10 @@
                   <div class="col-auto">
                     <input
                       type="text"
-                      class="form-control"
+                      class="form-control admin-edit-input"
                       placeholder="Name"
-                      id="admin-edit-input"
+                      id="editName"
+                      name="name"
                     />
                   </div>
                 </div>
@@ -189,7 +199,7 @@
                 <div class="row align-items-center justify-content-center">
                   <div class="col-auto">
                     <label
-                      for="Email"
+                      for="editEmail"
                       class="form-label fw-medium fs-5 my-0 me-5"
                       >Email:</label
                     >
@@ -197,9 +207,10 @@
                   <div class="col-auto">
                     <input
                       type="text"
-                      class="form-control"
+                      class="form-control admin-edit-input"
                       placeholder="Email"
-                      id="admin-edit-input"
+                      id="editEmail"
+                      name="email"
                     />
                   </div>
                 </div>
@@ -208,7 +219,7 @@
                 <div class="row align-items-center justify-content-center">
                   <div class="col-auto">
                     <label
-                      for="Password"
+                      for="editPassword"
                       class="form-label fw-medium fs-5 my-0 me-2"
                       >Password:</label
                     >
@@ -216,9 +227,10 @@
                   <div class="col-auto">
                     <input
                       type="text"
-                      class="form-control"
-                      id="admin-edit-input"
+                      class="form-control admin-edit-input"
+                      id="editPassword"
                       placeholder="Password"
+                      name="password"
                     />
                   </div>
                 </div>
@@ -235,6 +247,17 @@
         </div>
       </div>
     </div>
+
+    <script>
+      function populateModal(button) {
+        document.getElementById("editId").value =
+          button.getAttribute("data-admin-id");
+        document.getElementById("editName").value =
+          button.getAttribute("data-admin-name"); // Notice: editname not editName
+        document.getElementById("editEmail").value =
+          button.getAttribute("data-admin-email");
+      }
+    </script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"

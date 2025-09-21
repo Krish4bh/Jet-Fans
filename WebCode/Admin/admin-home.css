@@ -40,3 +40,9 @@
   width: 250px;
   border-color: rgb(135, 135, 135);
 }
+
+#admin-edit-btn {
+  border: 0px;
+  background-color: transparent;
+  color: rgb(35, 28, 225);
+}
