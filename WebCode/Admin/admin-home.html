@@ -18,6 +18,7 @@
     />
 
     <link rel="stylesheet" th:href="@{/css/admin-home.css}" />
+    <link rel="stylesheet" href="/WebCode/Admin/admin-home.css" />
   </head>
   <body>
     <nav class="navbar">
@@ -173,10 +174,10 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form th:action="@{/update/admin}" method="post">
+            <form class="form" th:action="@{/update/admin}" method="post">
               <input type="hidden" name="id" id="editId" />
               <div class="mb-3">
-                <div class="row align-items-center justify-content-center">
+                <div class="row align-items-center justify-content-between">
                   <div class="col-auto">
                     <label
                       for="editname"
@@ -196,7 +197,7 @@
                 </div>
               </div>
               <div class="mb-3">
-                <div class="row align-items-center justify-content-center">
+                <div class="row align-items-center justify-content-between">
                   <div class="col-auto">
                     <label
                       for="editEmail"
@@ -216,7 +217,7 @@
                 </div>
               </div>
               <div class="mb-4">
-                <div class="row align-items-center justify-content-center">
+                <div class="row align-items-center justify-content-between">
                   <div class="col-auto">
                     <label
                       for="editPassword"
@@ -238,8 +239,76 @@
               <div class="mb-3">
                 <div class="row align-items-center justify-content-center">
                   <div class="col-auto">
-                    <button class="btn btn-success">Save</button>
+                    <button class="btn btn-success">Save Changes</button>
                   </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="add-admin-modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Admin</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form class="form" th:action="${/add/admin}" method="post">
+              <div class="row align-items-center justify-content-between mb-3">
+                <div class="col">
+                  <label for="addName" class="form-label fw-medium fs-5 my-0"
+                    >Name:</label
+                  >
+                </div>
+                <div class="col-auto">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    id="addName"
+                    placeholder="Name"
+                  />
+                </div>
+              </div>
+              <div class="row align-items-center justify-content-between mb-3">
+                <div class="col">
+                  <label for="addEmail" class="form-label fw-medium fs-5"
+                    >Email:</label
+                  >
+                </div>
+                <div class="col-auto">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="email"
+                    id="addEmail"
+                    placeholder="Email"
+                  />
+                </div>
+              </div>
+              <div class="row align-items-center justify-content-between mb-4">
+                <div class="col">
+                  <label for="addPassword" class="form-label fw-medium fs-5"
+                    >Password:</label
+                  >
+                </div>
+                <div class="col-auto">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="addPassword"
+                    name="password"
+                    placeholder="Password"
+                  />
+                </div>
+              </div>
+              <div class="row align-items-center justify-content-center">
+                <div class="col-auto">
+                  <button class="btn btn-success">Submit</button>
                 </div>
               </div>
             </form>
@@ -253,7 +322,7 @@
         document.getElementById("editId").value =
           button.getAttribute("data-admin-id");
         document.getElementById("editName").value =
-          button.getAttribute("data-admin-name"); // Notice: editname not editName
+          button.getAttribute("data-admin-name");
         document.getElementById("editEmail").value =
           button.getAttribute("data-admin-email");
       }
