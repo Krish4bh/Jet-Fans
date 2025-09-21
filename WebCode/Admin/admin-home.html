@@ -117,7 +117,11 @@
                     </button>
                     <button
                       class="btn btn-danger"
-                      th:href="@{'/delete/admin/' + ${admin.id} }"
+                      data-bs-toggle="modal"
+                      data-bs-target="#delete-admin-modal"
+                      th:data-admin-name="${admin.name}"
+                      th:data-admin-id="${admin.id}"
+                      onclick="deleteAdmin(this)"
                     >
                       Delete
                     </button>
@@ -174,7 +178,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form class="form" th:action="@{/update/admin}" method="post">
+            <form th:action="@{/update/admin}" method="post">
               <input type="hidden" name="id" id="editId" />
               <div class="mb-3">
                 <div class="row align-items-center justify-content-between">
@@ -257,7 +261,7 @@
             <button class="btn-close" data-bs-dismiss="modal"></button>
           </div>
           <div class="modal-body">
-            <form class="form" th:action="${/add/admin}" method="post">
+            <form class="form" th:action="@{/add/admin}" method="post">
               <div class="row align-items-center justify-content-between mb-3">
                 <div class="col">
                   <label for="addName" class="form-label fw-medium fs-5 my-0"
@@ -317,15 +321,55 @@
       </div>
     </div>
 
+    <div class="modal fade" id="delete-admin-modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+            <form action="" method="post" class="form" id="delete-form">
+              <h6 class="fs-3 text-center mb-4">
+                Do you want to delete
+                <strong class="fs-3" id="admin-name"></strong
+                ><strong class="fs-3">'s</strong> admin account?
+              </h6>
+              <div class="row justify-content-center mb-4">
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-warning">Yes</button>
+                </div>
+                <div class="col-auto">
+                  <button
+                    type="button"
+                    class="btn btn-outline-success"
+                    data-bs-dismiss="modal"
+                  >
+                    No
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script>
       function populateModal(button) {
         document.getElementById("editId").value =
           button.getAttribute("data-admin-id");
         document.getElementById("editName").value =
-          button.getAttribute("data-admin-name");
+          button.getAttribute("data-admin-name"); // Notice: editname not editName
         document.getElementById("editEmail").value =
           button.getAttribute("data-admin-email");
       }
+
+      deleteAdmin = (button) => {
+        const adminName = button.getAttribute("data-admin-name");
+        const adminId = button.getAttribute("data-admin-id");
+
+        document.getElementById("admin-name").textContent = adminName;
+        document.getElementById(
+          "delete-form"
+        ).action = `/delete/admin/${adminId}`;
+      };
     </script>
 
     <script
