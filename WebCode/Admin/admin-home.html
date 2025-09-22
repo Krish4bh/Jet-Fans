@@ -82,7 +82,7 @@
       <div class="container mt-5">
         <div class="row">
           <div class="col">
-            <h5 class="fw-medium text-center me-5">Manage Admins</h5>
+            <h5 class="fw-medium text-center">Manage Admins</h5>
             <table class="table table-bordered mb-0">
               <thead>
                 <tr>
@@ -132,7 +132,7 @@
                         th:data-admin-id="${admin.id}"
                         onclick="deleteAdmin(this)"
                       >
-                        Delete
+                        Remove
                       </button>
                     </div>
                   </td>
@@ -370,7 +370,7 @@
     <div class="users-content d-none">
       <div class="container mt-5">
         <div class="row">
-          <div class="col-7">
+          <div class="col-5">
             <h5 class="fw-medium text-center">Manage Users</h5>
             <table class="table table-bordered mb-0">
               <thead>
@@ -378,19 +378,28 @@
                   <th class="" scope="col">Id</th>
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
-                  <th scope="col">Contact</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr class="">
                   <td class="text-body-secondary" scope="row"></td>
                   <td class="text-body-secondary" scope="row"></td>
                   <td class="text-body-secondary" scope="row"></td>
-                  <td class="text-body-secondary" scope="row"></td>
+                  <td scope="row">
+                    <div class="d-flex justify-content-around">
+                      <button class="user-edit-btn">
+                        <i class="bi bi-pencil-square fs-3"></i>
+                      </button>
+                      <button class="btn btn-danger">Remove</button>
+                    </div>
+                  </td>
                 </tr>
               </tbody>
             </table>
+            <div>
+              <button class="bg-dark add-user-btn">Add User</button>
+            </div>
           </div>
           <div class="col-5"></div>
         </div>
