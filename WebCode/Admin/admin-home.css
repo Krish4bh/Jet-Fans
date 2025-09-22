@@ -50,7 +50,8 @@
 
 .admin-edit-input,
 .add-user-input,
-.add-admin-input {
+.add-admin-input,
+.edit-user-input {
   width: 250px;
   border-color: rgb(135, 135, 135);
 }

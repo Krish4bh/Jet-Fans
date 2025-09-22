@@ -388,7 +388,11 @@
                   <td class="text-body-secondary" scope="row"></td>
                   <td scope="row">
                     <div class="d-flex justify-content-around">
-                      <button class="user-edit-btn">
+                      <button
+                        class="user-edit-btn"
+                        data-bs-toggle="modal"
+                        data-bs-target="#edit-user-modal"
+                      >
                         <i class="bi bi-pencil-square fs-3"></i>
                       </button>
                       <button class="btn btn-danger">Remove</button>
@@ -497,6 +501,99 @@
               <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-success mb-3">
                   Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="edit-user-modal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit User</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form th:action="" class="form" method="post">
+              <div class="row d-flex justify-content-between mb-3">
+                <div class="col-auto">
+                  <label
+                    for="edit-user-name"
+                    class="form-label fw-medium fs-5 my-0"
+                    >Name:</label
+                  >
+                </div>
+                <div class="col-auto">
+                  <input
+                    type="text"
+                    class="form-control edit-user-input"
+                    id="edit-user-name"
+                    name="name"
+                    placeholder="Name"
+                  />
+                </div>
+              </div>
+              <div class="row justify-content-between mb-3">
+                <div class="col-auto">
+                  <label
+                    for="edit-user-email"
+                    class="form-label fw-medium fs-5 my-0"
+                    >Email:</label
+                  >
+                </div>
+                <div class="col-auto">
+                  <input
+                    type="text"
+                    name="email"
+                    placeholder="Email"
+                    class="form-control edit-user-input"
+                    id="edit-user-email"
+                  />
+                </div>
+              </div>
+              <div class="row justify-content-between mb-3">
+                <div class="col-auto">
+                  <label
+                    for="edit-user-contact"
+                    class="form-label fw-medium fs-5 my-0"
+                    >Contact:</label
+                  >
+                </div>
+                <div class="col-auto">
+                  <input
+                    type="text"
+                    name="contact_details"
+                    placeholder="Phone Number"
+                    class="form-control edit-user-input"
+                    id="edit-user-contact"
+                  />
+                </div>
+              </div>
+              <div class="row justify-content-between mb-3">
+                <div class="col-auto">
+                  <label
+                    for="edit-user-password"
+                    class="form-label fw-medium fs-5 my-0"
+                    >Password:</label
+                  >
+                </div>
+                <div class="col-auto">
+                  <input
+                    type="text"
+                    name="password"
+                    placeholder="Password"
+                    class="form-control edit-user-input"
+                    id="edit-user-password"
+                  />
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success mb-3">
+                  Save Changes
                 </button>
               </div>
             </form>
