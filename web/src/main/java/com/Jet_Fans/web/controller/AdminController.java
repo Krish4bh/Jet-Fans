@@ -43,7 +43,7 @@ public class AdminController {
     public String adminHome(Model model) {
         List<Admin> admins = adminService.getAll();
 
-        model.addAttribute("admin", admins);
+        model.addAttribute("admins", admins);
         return "admin-home";
     }
 
