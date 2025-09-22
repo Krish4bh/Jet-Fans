@@ -1,0 +1,48 @@
+#manage-btn {
+  border-color: white !important;
+}
+
+#manage-btn.active {
+  border-color: black !important;
+  background-color: white !important;
+  color: black !important;
+}
+
+#manage-btn:hover {
+  border-color: black !important;
+  background-color: white !important;
+  color: black !important;
+}
+
+#logout-btn:active {
+  background-color: white !important;
+  color: rgb(114, 114, 114);
+}
+
+#logout-btn:hover {
+  background-color: white !important;
+  color: rgb(107, 107, 107);
+}
+
+#add-admin-btn {
+  color: white;
+  border: 1px solid black;
+  height: 35px;
+  width: 100%;
+}
+
+#add-admin-btn:hover {
+  background-color: white !important;
+  color: rgb(0, 0, 0);
+}
+
+.admin-edit-input {
+  width: 250px;
+  border-color: rgb(135, 135, 135);
+}
+
+#admin-edit-btn {
+  border: 0px;
+  background-color: transparent;
+  color: rgb(35, 28, 225);
+}
