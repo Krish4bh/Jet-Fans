@@ -642,12 +642,14 @@
       </div>
     </div>
 
+    <div class="product-content d-none"></div>
+
     <script>
       function populateModal(button) {
         document.getElementById("editId").value =
           button.getAttribute("data-admin-id");
         document.getElementById("editName").value =
-          button.getAttribute("data-admin-name"); // Notice: editname not editName
+          button.getAttribute("data-admin-name");
         document.getElementById("editEmail").value =
           button.getAttribute("data-admin-email");
       }
