@@ -348,7 +348,9 @@
                 </h6>
                 <div class="row justify-content-center mb-4">
                   <div class="col-auto">
-                    <button type="submit" class="btn btn-warning">Yes</button>
+                    <button type="submit" class="btn btn-warning">
+                      Delete
+                    </button>
                   </div>
                   <div class="col-auto">
                     <button
@@ -356,7 +358,7 @@
                       class="btn btn-outline-success"
                       data-bs-dismiss="modal"
                     >
-                      No
+                      Cancel
                     </button>
                   </div>
                 </div>
@@ -395,7 +397,13 @@
                       >
                         <i class="bi bi-pencil-square fs-3"></i>
                       </button>
-                      <button class="btn btn-danger">Remove</button>
+                      <button
+                        class="btn btn-danger"
+                        data-bs-toggle="modal"
+                        data-bs-target="#remove-user-modal"
+                      >
+                        Remove
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -595,6 +603,36 @@
                 <button type="submit" class="btn btn-success mb-3">
                   Save Changes
                 </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="remove-user-modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+            <form action="" class="form" method="post" id="remove-user-form">
+              <h6 class="fs-3 text-center mb-4">
+                Do you want to delete
+                <strong class="fs-3" id="admin-name"></strong
+                ><strong class="fs-3">'s</strong> admin account?
+              </h6>
+              <div class="row justify-content-center">
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-warning">Delete</button>
+                </div>
+                <div class="col-auto">
+                  <button
+                    type="button"
+                    class="btn btn-outline-success"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </form>
           </div>
