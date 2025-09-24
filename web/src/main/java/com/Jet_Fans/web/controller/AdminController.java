@@ -2,7 +2,9 @@ package com.Jet_Fans.web.controller;
 
 
 import com.Jet_Fans.web.entity.Admin;
+import com.Jet_Fans.web.entity.User;
 import com.Jet_Fans.web.service.AdminService;
+import com.Jet_Fans.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,9 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/admin/login")
     public String adminLogin(Model model) {
@@ -42,6 +47,7 @@ public class AdminController {
     @GetMapping("/admin/admin-home")
     public String adminHome(Model model) {
         List<Admin> admins = adminService.getAll();
+        List<User> users = userService.getAll();
 
         model.addAttribute("admins", admins);
         return "admin-home";
