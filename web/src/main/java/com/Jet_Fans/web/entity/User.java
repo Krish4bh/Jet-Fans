@@ -2,6 +2,8 @@ package com.Jet_Fans.web.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -21,6 +23,9 @@ public class User {
 
     @Column(name = "Address", nullable = false, columnDefinition = "TEXT")
     private String address;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders;
 
     public Long getId() {
         return id;
