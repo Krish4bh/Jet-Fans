@@ -1,14 +1,14 @@
-#manage-btn {
+.manage-btn {
   border-color: white !important;
 }
 
-#manage-btn.active {
+.manage-btn.active {
   border-color: black !important;
   background-color: white !important;
   color: black !important;
 }
 
-#manage-btn:hover {
+.manage-btn:hover {
   border-color: black !important;
   background-color: white !important;
   color: black !important;
@@ -36,7 +36,22 @@
   color: rgb(0, 0, 0);
 }
 
-.admin-edit-input {
+.add-user-btn {
+  color: white;
+  border: 1px solid black;
+  height: 35px;
+  width: 100%;
+}
+
+.add-user-btn:hover {
+  background-color: white !important;
+  color: rgb(0, 0, 0);
+}
+
+.admin-edit-input,
+.add-user-input,
+.add-admin-input,
+.edit-user-input {
   width: 250px;
   border-color: rgb(135, 135, 135);
 }
@@ -45,4 +60,11 @@
   border: 0px;
   background-color: transparent;
   color: rgb(35, 28, 225);
+}
+
+.user-edit-btn {
+  border: 0px;
+  background-color: transparent;
+  color: rgb(35, 28, 225);
+  height: 24px !important;
 }
