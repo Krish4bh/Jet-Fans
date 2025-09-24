@@ -1,3 +1,33 @@
+function populateModal(button) {
+    document.getElementById("editId").value = button.getAttribute('data-admin-id');
+    document.getElementById("editName").value = button.getAttribute('data-admin-name');
+    document.getElementById("editEmail").value = button.getAttribute('data-admin-email');
+}
+
+    deleteAdmin = (button) => {
+        const adminName = button.getAttribute("data-admin-name");
+        const adminId = button.getAttribute("data-admin-id");
+
+        document.getElementById("admin-name").textContent = adminName;
+        document.getElementById("delete-form").action = `/delete/admin/${adminId}`;
+      };
+
+    populateUserModal = (button) => {
+        document.getElementById("edit-user-id").value = button.getAttribute("data-user-id");
+        document.getElementById("edit-user-name").value = button.getAttribute("data-user-name");
+        document.getElementById("edit-user-email").value = button.getAttribute("data-user-email");
+        document.getElementById("edit-user-contact").value = button.getAttribute("data-user-contact");
+    }
+
+    removeUser = (button) => {
+        const userName = button.getAttribute("data-user-name");
+        const userId = button.getAttribute("data-user-id");
+
+        document.getElementById("user-name").textContent = userName;
+        document.getElementById("remove-user-form").action = `/delete/user/${userId}`;
+    }
+
+
 const usersTab = document.querySelector(".users-tab");
 const homeTab = document.querySelector(".home-tab");
 const homeContent = document.querySelector(".home-content");
