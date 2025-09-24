@@ -23,6 +23,10 @@ public class UserService {
     }
 
     public void createUser(User user) {
+        if (user.getEmail() == null || user.getEmail().isEmpty()) {
+            throw new RuntimeException("Email can not be empty");
+        }
+
         userRepo.findByEmail(user.getEmail()).ifPresent(existingUser -> {
             throw new RuntimeException("User with email " + existingUser.getEmail() + " already exists.");
         });
