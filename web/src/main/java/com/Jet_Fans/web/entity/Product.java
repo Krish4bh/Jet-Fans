@@ -24,11 +24,6 @@ public class Product {
     private double price;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "product_feedbacks",
-            joinColumns = @JoinColumn( name = "product_id"),
-            inverseJoinColumns = @JoinColumn( name = "feedback_id")
-    )
     private List<Feedback> feedback = new ArrayList<>();
 
     @Column(name = "createdAt")
