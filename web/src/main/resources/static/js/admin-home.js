@@ -30,20 +30,26 @@ function populateModal(button) {
 
 const usersTab = document.querySelector(".users-tab");
 const homeTab = document.querySelector(".home-tab");
+const productsTab = document.querySelector(".products-tab");
+const ordersTab = document.querySelector(".orders-tab")
+
 const homeContent = document.querySelector(".home-content");
 const usersContent = document.querySelector(".users-content");
-const productsTab = document.querySelector(".products-tab");
-const productsContent = document.querySelector(".product-content");
+const productsContent = document.querySelector(".products-content");
+const ordersContent = document.querySelector(".orders-content")
+
 
 homeTab.addEventListener("click", (e) => {
   e.preventDefault();
   homeTab.classList.add("active");
   usersTab.classList.remove("active");
   productsTab.classList.remove("active");
+  ordersTab.classList.remove("active");
 
   homeContent.classList.remove("d-none");
   usersContent.classList.add("d-none");
   productsContent.classList.add("d-none");
+  ordersContent.classList.add("d-none")
 });
 
 usersTab.addEventListener("click", (e) => {
@@ -51,10 +57,12 @@ usersTab.addEventListener("click", (e) => {
   usersTab.classList.add("active");
   homeTab.classList.remove("active");
   productsTab.classList.remove("active");
+  ordersTab.classList.remove("active");
 
   usersContent.classList.remove("d-none");
   homeContent.classList.add("d-none");
   productsContent.classList.add("d-none");
+  ordersContent.classList.add("d-none")
 });
 
 productsTab.addEventListener("click", (e) => {
@@ -62,8 +70,23 @@ productsTab.addEventListener("click", (e) => {
   productsTab.classList.add("active");
   usersTab.classList.remove("active");
   homeTab.classList.remove("active");
+  ordersTab.classList.remove("active")
 
   productsContent.classList.remove("d-none");
   usersContent.classList.add("d-none");
   homeContent.classList.add("d-none");
+  ordersContent.classList.add("d-none")
 });
+
+ordersTab.addEventListener("click", (e) => {
+    e.preventDefault();
+    ordersTab.classList.add("active")
+    productsTab.classList.remove("active");
+    usersTab.classList.remove("active");
+    homeTab.classList.remove("active");
+
+    ordersContent.classList.remove("d-none")
+    productsContent.classList.add("d-none");
+    usersContent.classList.add("d-none");
+    homeContent.classList.add("d-none");
+})
