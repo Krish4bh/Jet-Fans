@@ -14,7 +14,7 @@ public class Order {
     private Long id;
 
     @Column(name = "Date", nullable = false)
-    private LocalDateTime date;
+    private LocalDateTime createdAt;
 
     @Column(name = "Total_Amount", nullable = false)
     private double totalAmount;
@@ -34,12 +34,8 @@ public class Order {
         this.id = id;
     }
 
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
     public double getTotalAmount() {
@@ -81,4 +77,9 @@ public class Order {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private List<Product> products;
+
+    @PrePersist
+    protected void createdAt() {
+        this.createdAt = LocalDateTime.now();
+    }
 }
