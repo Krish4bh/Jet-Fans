@@ -24,7 +24,8 @@
   color: rgb(107, 107, 107);
 }
 
-#add-admin-btn {
+#add-admin-btn,
+#add-product-btn {
   color: white;
   border: 1px solid black;
   height: 35px;
@@ -32,6 +33,11 @@
 }
 
 #add-admin-btn:hover {
+  background-color: white !important;
+  color: rgb(0, 0, 0);
+}
+
+#add-product-btn:hover {
   background-color: white !important;
   color: rgb(0, 0, 0);
 }
