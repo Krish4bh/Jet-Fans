@@ -1,8 +1,10 @@
 package com.Jet_Fans.web.entity;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
+@Table(name = "Cart")
 public class Cart {
 
     @Id
