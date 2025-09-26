@@ -34,4 +34,16 @@ public class ProductService {
             productFromDb.setPrice(product.getPrice());
         }
     }
+
+    public void addProductImages(Long productId, List<String> newImages) {
+        Product productFromDb = productRepo.findById(productId).orElseThrow(() -> new RuntimeException("No product found..."));
+        productFromDb.getImages().addAll(newImages);
+        productRepo.save(productFromDb);
+    }
+
+    public void removeProductImages(Long productId, List<String> imagesToRemove) {
+        Product productFromDb = productRepo.findById(productId).orElseThrow(() -> new RuntimeException("No product found..."));
+        productFromDb.getImages().removeAll(imagesToRemove);
+        productRepo.save(productFromDb);
+    }
 }
