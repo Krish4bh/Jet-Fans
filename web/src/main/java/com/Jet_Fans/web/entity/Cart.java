@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "Cart")
+@Table(name = "carts")
 public class Cart {
 
     @Id
