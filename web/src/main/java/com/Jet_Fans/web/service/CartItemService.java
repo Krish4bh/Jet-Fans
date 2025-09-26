@@ -20,12 +20,9 @@ public class CartItemService {
     @Autowired
     private CartRepo cartRepo;
 
-    
     public CartItem createCartItem(Cart cart, Product product, int quantity) {
 
-        CartItem itemFromDb = cart.getCartItem().stream()
-                .filter(cartItem -> cartItem.getProduct().getId().equals(product.getId()))
-                .findFirst().orElse(null);
+        CartItem itemFromDb = cartItemRepo.findByCartIdAndProductId(cart.getId(), product.getId()).orElse(null);
 
         if (itemFromDb != null) {
             itemFromDb.setQuantity(itemFromDb.getQuantity() + quantity);
