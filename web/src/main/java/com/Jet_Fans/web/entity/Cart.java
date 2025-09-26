@@ -14,6 +14,9 @@ public class Cart {
     @Column(name = "UpdatedAt")
     private LocalDateTime updatedAt;
 
+    @Column(name = "Total_Price")
+    private double totalPrice;
+
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -52,5 +55,13 @@ public class Cart {
 
     public void setCartItem(List<CartItem> cartItem) {
         this.cartItem = cartItem;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

@@ -21,6 +21,9 @@ public class CartItem {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
+    @Column(name = "Item_Total_Price")
+    private double itemTotalPrice;
+
     public Long getId() {
         return id;
     }
@@ -51,5 +54,13 @@ public class CartItem {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public double getItemTotalPrice() {
+        return itemTotalPrice;
+    }
+
+    public void setItemTotalPrice(double itemTotalPrice) {
+        this.itemTotalPrice = itemTotalPrice;
     }
 }
