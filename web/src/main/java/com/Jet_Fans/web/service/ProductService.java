@@ -13,6 +13,10 @@ public class ProductService {
     @Autowired
     private ProductRepo productRepo;
 
+    public void createProduct(Product product) {
+        productRepo.save(product);
+    }
+
     public List<Product> getAllByTitle(String title) {
         return productRepo.findByTitleContainingIgnoreCase(title);
     }
@@ -33,6 +37,8 @@ public class ProductService {
         if (product.getPrice() > 0) {
             productFromDb.setPrice(product.getPrice());
         }
+
+        productRepo.save(productFromDb);
     }
 
     public void addProductImages(Long productId, List<String> newImages) {
@@ -45,5 +51,9 @@ public class ProductService {
         Product productFromDb = productRepo.findById(productId).orElseThrow(() -> new RuntimeException("No product found..."));
         productFromDb.getImages().removeAll(imagesToRemove);
         productRepo.save(productFromDb);
+    }
+
+    public void deleteProduct(Long id) {
+        productRepo.deleteById(id);
     }
 }
