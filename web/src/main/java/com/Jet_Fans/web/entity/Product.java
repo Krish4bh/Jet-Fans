@@ -40,6 +40,8 @@ public class Product {
     @Column(name = "image_url")
     private List<String> images = new ArrayList<>();
 
+    private String image;
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
@@ -48,6 +50,14 @@ public class Product {
     @PreUpdate
     protected  void onUpdate() {
         this.updatedAt = LocalDateTime.now();
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Long getId() {
