@@ -23,6 +23,9 @@ public class Product {
     @Column(name = "Price")
     private double price;
 
+    @Column(name = "Category")
+    private String category;
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Feedback> feedback = new ArrayList<>();
 
@@ -90,6 +93,14 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public List<Feedback> getFeedback() {
