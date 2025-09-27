@@ -45,7 +45,8 @@
               <div class="brand-name">
                 <a
                   class="logo navbar-brand me-0"
-                  href="home.html"
+                  th:href="@{home.html}"
+                  href="../templates/home.html"
                   style="font-family: Dancing Script, cursive"
                   >Jet Fans
                 </a>
@@ -85,6 +86,7 @@
                   </form>
                   <li class="nav-item">
                     <a
+                      th:href="@{authorization.html}"
                       href="../Pre-Home/authorization.html"
                       class="nav-link d-none d-lg-block"
                       id="LogIn-link"
@@ -93,6 +95,7 @@
                   </li>
                   <li class="nav-item">
                     <a
+                      th:href="@{contact-us.html}"
                       href="/WebCode/Post-Home/contact-us.html"
                       class="nav-link d-none d-lg-block"
                       id="ContactUs-link"
@@ -121,6 +124,7 @@
                   <!-- Login icon -->
                   <li class="nav-item">
                     <a
+                      th:href="@{authorization.html}"
                       href="../Pre-Home/authorization.html"
                       class="nav-link d-block d-lg-none"
                     >
