@@ -405,7 +405,7 @@
                   <td
                     class="text-body-secondary"
                     scope="row"
-                    th:text="${user.contact_details}"
+                    th:text="${user.phone}"
                   ></td>
                   <td scope="row">
                     <div class="d-flex justify-content-around">
@@ -413,9 +413,9 @@
                         class="user-edit-btn"
                         data-bs-toggle="modal"
                         data-bs-target="#edit-user-modal"
-                        th:data-user-id="${user.user_id}"
+                        th:data-user-id="${user.id}"
                         th:data-user-name="${user.name}"
-                        th:data-user-contact="${user.contact_details}"
+                        th:data-user-contact="${user.phone}"
                         th:data-user-email="${user.email}"
                         onclick="populateUserModal(this)"
                       >
@@ -426,7 +426,7 @@
                         data-bs-toggle="modal"
                         data-bs-target="#remove-user-modal"
                         th:data-user-name="${user.name}"
-                        th:data-user-id="${user.user_id}"
+                        th:data-user-id="${user.id}"
                         onclick="removeUser(this)"
                       >
                         Remove
@@ -451,7 +451,7 @@
           </div>
           <div class="modal-body">
             <form th:action="@{/update/user}" class="form" method="post">
-              <input type="hidden" name="user_id" id="edit-user-id" />
+              <input type="hidden" name="id" id="edit-user-id" />
               <div class="row d-flex justify-content-between mb-3">
                 <div class="col-auto">
                   <label
@@ -499,7 +499,7 @@
                 <div class="col-auto">
                   <input
                     type="text"
-                    name="contact_details"
+                    name="phone"
                     placeholder="Phone Number"
                     class="form-control edit-user-input"
                     id="edit-user-contact"
@@ -541,7 +541,7 @@
         <div class="modal-content">
           <div class="modal-body">
             <form action="" class="form" method="post" id="remove-user-form">
-              <input type="hidden" name="user_id" id="remove-user-id" />
+              <input type="hidden" name="id" id="remove-user-id" />
               <h6 class="fs-3 text-center mb-4">
                 Do you want to delete
                 <strong class="fs-3" id="user-name"></strong
@@ -746,7 +746,7 @@
               <div class="row justify-content-between align-items-center mb-3">
                 <div class="col-auto">
                   <label
-                    for="description"
+                    for="edit-description"
                     class="form-label fw-medium fs-5 my-0"
                     >Description:</label
                   >
@@ -754,7 +754,7 @@
                 <div class="col-auto">
                   <textarea
                     name="description"
-                    id="description"
+                    id="edit-description"
                     placeholder="Describe"
                     class="form-control"
                   ></textarea>
@@ -763,7 +763,7 @@
               <div class="row justify-content-between align-items-center mb-4">
                 <div class="col-auto">
                   <label
-                    for="price-input"
+                    for="edit-price-input"
                     class="form-label fw-medium fs-5 my-0"
                     >Price:</label
                   >
@@ -774,7 +774,7 @@
                     class="form-control"
                     name="price"
                     placeholder="Price"
-                    id="price-input"
+                    id="edit-price-input"
                   />
                 </div>
               </div>
@@ -800,11 +800,11 @@
           </div>
           <div class="modal-body">
             <form action="" class="form" method="post">
-              <input type="hidden" name="id" id="edit-product-id" />
+              <input type="hidden" name="id" id="add-product-id" />
               <div class="row justify-content-between mb-3">
                 <div class="col-auto">
                   <label
-                    for="edit-product-title"
+                    for="add-product-title"
                     class="form-label fw-medium fs-5 my-0 me-5"
                     >Title:</label
                   >
@@ -814,14 +814,14 @@
                     type="text"
                     name="title"
                     placeholder="Title"
-                    id="edit-product-title"
+                    id="add-product-title"
                     class="form-control edit-product-input"
                   />
                 </div>
               </div>
               <div class="row justify-content-between align-items-center mb-4">
                 <div class="col-auto">
-                  <label for="add-image-field" class="fw-medium fs-5 my-0"
+                  <label for="add-image-input" class="fw-medium fs-5 my-0"
                     >Upload Images:</label
                   >
                 </div>
@@ -829,7 +829,7 @@
                   <input
                     class="form-control add-image-field"
                     type="file"
-                    id="add-image-field"
+                    id="add-image-input"
                     multiple
                     accept="image/*"
                   />
