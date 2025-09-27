@@ -79,3 +79,15 @@
   background-color: transparent;
   color: rgb(35, 28, 225);
 }
+
+.edit-product-input {
+  width: 500px;
+  border-color: rgb(135, 135, 135);
+}
+
+#add-image-field,
+#description,
+#price-input {
+  width: 500px;
+  border-color: rgb(135, 135, 135);
+}
