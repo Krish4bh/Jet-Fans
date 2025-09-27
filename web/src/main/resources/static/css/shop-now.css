@@ -1,3 +1,25 @@
 .card {
   border: 1px solid black !important;
 }
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* pushes footer down */
+}
+
+footer {
+  background-color: #222; /* your footer bg */
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
