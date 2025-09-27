@@ -91,3 +91,15 @@
   width: 500px;
   border-color: rgb(135, 135, 135);
 }
+
+#choose-category {
+  border-color: rgb(135, 135, 135);
+  border-style: solid;
+  width: 300px;
+  height: 24px !important;
+  border-radius: 3px;
+}
+
+.select-option {
+  color: rgb(179, 179, 179);
+}
