@@ -17,7 +17,7 @@ public class UserController {
     @PostMapping("/user/login")
     private String userLogin(@RequestParam String email, @RequestParam String password, Model model) {
         if (userService.verifyUser(email, password)) {
-            return "redirect:/user/hero-page";
+            return "redirect:/jet-fans/home";
         }
         model.addAttribute("error", "Invalid email or password");
         return "user-login";
@@ -27,7 +27,7 @@ public class UserController {
     private String userRegister(@ModelAttribute("user") User user, Model model) {
         try {
             userService.createUser(user);
-            return "redirect:/user/hero-page";
+            return "redirect:/jet-fans/home";
         } catch (RuntimeException e) {
             model.addAttribute(e.getMessage());
             return "user-login";
