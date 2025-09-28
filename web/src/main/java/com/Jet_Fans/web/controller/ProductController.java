@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -36,6 +37,15 @@ public class ProductController {
         productService.updateProduct(product);
         System.out.println("************************************************************************");
         System.out.println("Product with id " + product.getId() + " has been successfully updated.");
+        System.out.println("************************************************************************");
+        return "redirect:/admin/admin-home";
+    }
+
+    @PostMapping("/product/delete/{id}")
+    public String removeProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
+        System.out.println("************************************************************************");
+        System.out.println("Product with id " + id + " has been successfully updated.");
         System.out.println("************************************************************************");
         return "redirect:/admin/admin-home";
     }

@@ -24,7 +24,7 @@ function populateModal(button) {
         const userId = button.getAttribute("data-user-id");
 
         document.getElementById("user-name").textContent = userName;
-        document.getElementById("remove-user-form").action = `/delete/user/${userId}`;
+        document.getElementById("remove-user-form").action = `/user/delete/${userId}`;
     }
 
 populateProductModal = (button) => {
@@ -33,6 +33,12 @@ populateProductModal = (button) => {
     document.getElementById("edit-product-description").value = button.getAttribute("data-product-description");
     document.getElementById("edit-product-price").value = button.getAttribute("data-product-price");
     document.getElementById("edit-product-category").value = button.getAttribute("data-product-category");
+}
+
+removeFormModal = (button) => {
+    const productId = button.getAttribute("data-product-id");
+
+    document.getElementById("remove-product-form").action = `/product/delete/${productId}`
 }
 
 
