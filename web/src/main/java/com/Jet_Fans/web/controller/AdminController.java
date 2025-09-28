@@ -89,12 +89,6 @@ public class AdminController {
         return "redirect:/admin/admin-home";
     }
 
-    @PostMapping("/update/product")
-    public String editProduct(Product product) {
-        productService.updateProduct(product);
-        return "redirect:/admin/admin-home";
-    }
-
     @PostMapping("/delete/admin/{id}")
     public String removeAdmin(@PathVariable Long id) {
         adminService.deleteById(id);
