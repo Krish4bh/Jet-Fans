@@ -24,8 +24,19 @@ public class ProductController {
     @PostMapping("/add/product")
     public String addProduct(@ModelAttribute Product product) {
         productService.createProduct(product);
+        System.out.println("************************************************************************");
+        System.out.println("Product with id " + product.getId() + " has been successfully added.");
+        System.out.println("************************************************************************");
+
         return "redirect:/admin/admin-home";
     }
 
-    
+    @PostMapping("/edit/product")
+    public String editProduct(@ModelAttribute Product product) {
+        productService.updateProduct(product);
+        System.out.println("************************************************************************");
+        System.out.println("Product with id " + product.getId() + " has been successfully updated.");
+        System.out.println("************************************************************************");
+        return "redirect:/admin/admin-home";
+    }
 }
