@@ -27,6 +27,14 @@ function populateModal(button) {
         document.getElementById("remove-user-form").action = `/delete/user/${userId}`;
     }
 
+populateProductModal = (button) => {
+    document.getElementById("edit-product-id").value = button.getAttribute("data-product-id");
+    document.getElementById("edit-product-title").value = button.getAttribute("data-product-title");
+    document.getElementById("edit-product-description").value = button.getAttribute("data-product-description");
+    document.getElementById("edit-product-price").value = button.getAttribute("data-product-price");
+    document.getElementById("edit-product-category").value = button.getAttribute("data-product-category");
+}
+
 
 const usersTab = document.querySelector(".users-tab");
 const homeTab = document.querySelector(".home-tab");
