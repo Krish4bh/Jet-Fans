@@ -50,10 +50,13 @@ public class UserController {
         return "redirect:/user/user-profile";
     }
 
-    @PostMapping("/user/delete-user")
+    @PostMapping("/user/delete/{id}")
     private String removeUser(@PathVariable Long id) {
         userService.deleteUser(id);
-        return "user-login";
+        System.out.println("************************************************************************");
+        System.out.println("User account with id " + id + " has been successfully deleted.");
+        System.out.println("************************************************************************");
+        return "redirect:/admin/admin-home";
     }
 
 }
