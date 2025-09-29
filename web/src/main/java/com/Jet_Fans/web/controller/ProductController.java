@@ -16,10 +16,11 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/home/shop-now")
-    public String listProducts(Model model) {
-        model.addAttribute("products", productService.getAll());
-        return "shop-now";
+    @GetMapping("/product/{id}")
+    public String productDetail(@PathVariable Long id, Model model) {
+        Product product = productService.getById(id);
+        model.addAttribute("product", product);
+        return "product-detail";
     }
 
     @PostMapping("/add/product")
