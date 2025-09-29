@@ -33,7 +33,7 @@
       <div class="row">
         <div class="col-lg-6 mb-4">
           <div
-            class="product-carousel fade-in"
+            class="product-carousel fade-in shadow-sm"
             id="productCarousel"
             data-bs-ride="carousel"
           >
@@ -72,7 +72,97 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-6"></div>
+        <div class="col"></div>
+        <div class="col-lg-5">
+          <div class="product-information fade-in shadow-lg">
+            <span
+              class="product-category py-2 px-3 text-white rounded-pill"
+              th:text="${product.category}"
+              >Jet Fans</span
+            >
+            <h3 class="product-title fw-medium mt-4" th:text="${product.title}">
+              Premium Table Fan with Remote Control
+            </h3>
+
+            <span
+              class="review-section d-flex align-items-center ps-3 w-50 rounded mb-3"
+            >
+              <div class="stars">
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-half text-warning"></i>
+              </div>
+              <span class="rating-text ps-3"
+                ><span th:text="${product.rating}">7</span> reviews</span
+              >
+            </span>
+
+            <p class="mb-3">
+              <span class="fw-bold fs-3">₹</span
+              ><span class="fw-bold fs-3" th:text="${product.price}">Price</span
+              ><span class="text-muted fs-6 ps-2">M.R.P</span>
+              <span
+                class="text-muted text-decoration-line-through fs-6"
+                th:text="${product.mrp}"
+                >M.R.P</span
+              >
+            </p>
+
+            <p class="description" th:text="${product-description}">
+              Experience superior cooling with our Premium Table Fan featuring
+              advanced aerodynamic design, ultra-quiet operation, and convenient
+              remote control. Perfect for bedrooms, offices, and living spaces.
+              The 3-speed settings and 90-degree oscillation ensure optimal air
+              circulation throughout your room. Energy-efficient motor saves up
+              to 40% electricity compared to traditional fans.
+            </p>
+            <form id="add-to-cart" class="mb-3">
+              <input type="hidden" name="id" id="add-to-cart-btn" />
+              <button class="btn btn-warning rounded-pill px-4">
+                Add to Cart
+              </button>
+            </form>
+
+            <div class="product-meta rounded w-75">
+              <div class="row meta-item justify-content-between px-4 pt-3 pb-0">
+                <div class="col-auto">
+                  <span class="meta-label fw-bolder text-secondary"
+                    >Availability:</span
+                  >
+                </div>
+                <div class="col-auto"><span>In-stock</span></div>
+              </div>
+              <div class="container">
+                <hr class="mb-0" />
+              </div>
+              <div class="row meta-item justify-content-between px-4 pt-3 pb-0">
+                <div class="col-auto">
+                  <span class="meta-label fw-bolder text-secondary"
+                    >Warranty:</span
+                  >
+                </div>
+                <div class="col-auto">
+                  <span>1 Year</span>
+                </div>
+              </div>
+              <div class="container">
+                <hr class="mb-0" />
+              </div>
+              <div class="row meta-item justify-content-between px-4 pt-3 pb-4">
+                <div class="col-auto">
+                  <span class="meta-label fw-bolder text-secondary"
+                    >Delivery:</span
+                  >
+                </div>
+                <div class="col-auto">
+                  <span>Free Shipping</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

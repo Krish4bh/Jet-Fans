@@ -1,7 +1,6 @@
 .product-carousel {
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   background: #fff;
 }
 
@@ -23,4 +22,26 @@
 
 .carousel-control-next {
   background: linear-gradient(-90deg, rgba(0, 0, 0, 0.1), transparent);
+}
+
+.product-information {
+  padding: 2rem;
+  border-radius: 12px;
+  background: white;
+}
+.product-category {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.review-section {
+  height: 3rem;
+  background-color: rgb(240, 240, 240);
+}
+
+.rating-text {
+  color: #757575;
+}
+
+.product-meta {
+  background: rgb(240, 240, 240);
 }
