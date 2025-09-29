@@ -1,0 +1,26 @@
+.product-carousel {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: #fff;
+}
+
+.carousel-inner {
+  border-radius: 12px;
+}
+
+.carousel-item img {
+  height: 400px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 8%;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.1), transparent);
+}
+
+.carousel-control-next {
+  background: linear-gradient(-90deg, rgba(0, 0, 0, 0.1), transparent);
+}
