@@ -45,3 +45,55 @@
 .product-meta {
   background: rgb(240, 240, 240);
 }
+
+.product-review {
+  border-radius: 12px;
+}
+
+.star-rating {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.star {
+  color: #ddd;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.star:hover,
+.star.active {
+  color: #ffc107;
+  transform: scale(1.1);
+}
+
+.star:hover ~ .star {
+  color: #ddd;
+}
+
+.rating-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.stars {
+  color: var(--accent-color);
+  font-size: 1.2rem;
+}
+
+.rating-text {
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+
+.product-description {
+  line-height: 1.7;
+  color: #475569;
+  margin-bottom: 2rem;
+}
