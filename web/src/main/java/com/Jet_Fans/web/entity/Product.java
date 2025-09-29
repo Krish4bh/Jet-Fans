@@ -23,6 +23,9 @@ public class Product {
     @Column(name = "Price")
     private double price;
 
+    @Column(name = "MRP")
+    private Double mrp = 0.0;
+
     @Column(name = "Category")
     private String category;
 
@@ -89,6 +92,14 @@ public class Product {
 
     public double getPrice() {
         return price;
+    }
+
+    public Double getMrp() {
+        return mrp;
+    }
+
+    public void setMrp(Double mrp) {
+        this.mrp = mrp;
     }
 
     public void setPrice(double price) {
