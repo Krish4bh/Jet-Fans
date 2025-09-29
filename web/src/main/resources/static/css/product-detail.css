@@ -11,13 +11,13 @@
 
 .carousel-item img {
   height: 400px;
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
 }
 
 .carousel-control-prev,
 .carousel-control-next {
-  width: 8%;
+  width: 10%;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.1), transparent);
 }
 
