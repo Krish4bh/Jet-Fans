@@ -28,8 +28,8 @@
     />
 
     <link rel="stylesheet" href="../static/css/shop-now.css" />
-      <link rel="stylesheet" th:href="@{/css/shop-now.css}">
-      <link rel="stylesheet" th:href="@{/css/fragments.css}">
+    <link rel="stylesheet" th:href="@{/css/shop-now.css}" />
+    <link rel="stylesheet" th:href="@{/css/fragments.css}" />
   </head>
   <body>
     <div th:replace="~{fragments :: navbar}"></div>
@@ -51,7 +51,10 @@
                 />
               </a>
               <div class="card-body">
-                <a href="" class="card-link text-decoration-none text-dark">
+                <a
+                  th:href="@{/product/{id}(id=${product.id})}"
+                  class="card-link text-decoration-none text-dark"
+                >
                   <h5 th:text="${product.title}">Product title</h5></a
                 >
                 <p class="prices mb-0">
