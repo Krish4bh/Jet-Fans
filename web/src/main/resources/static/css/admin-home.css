@@ -86,8 +86,7 @@
 }
 
 #add-image-field,
-#description,
-#price-input {
+#description {
   width: 500px;
   border-color: rgb(135, 135, 135);
 }
@@ -102,4 +101,9 @@
 
 .select-option {
   color: rgb(179, 179, 179);
+}
+
+#price-input,
+#mrp-input {
+  border-color: rgb(135, 135, 135);
 }
