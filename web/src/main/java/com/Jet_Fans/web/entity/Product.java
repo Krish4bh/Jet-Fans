@@ -45,7 +45,7 @@ public class Product {
     )
     @Column(name = "image_url")
     private List<String> images = new ArrayList<>();
-
+    
     private String image;
 
     @PrePersist

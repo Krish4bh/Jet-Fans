@@ -33,42 +33,39 @@
       <div class="row">
         <div class="">
           <div
-            class="product-carousel fade-in shadow-sm"
+            class="carousel slide shadow-sm"
             id="productCarousel"
             data-bs-ride="carousel"
           >
-            <div class="carousel slide" id="product-imgs-carousel">
-              <div class="carousel-inner">
-                <div
-                  class="carousel-item"
-                  th:each="image, iterStat : ${product.images}"
-                  th:classappend="${iterStat.first} ? 'active' : ''"
-                >
-                  <img
-                    th:src="@{${image}}"
-                    src="/Product-Imgs/table-fan.jpg"
-                    class="d-block product-img"
-                    th:alt="${product.title}"
-                  />
-                </div>
+            <div class="carousel-inner">
+              <div
+                class="carousel-item"
+                th:each="image, iterStat : ${product.images}"
+                th:classappend="${iterStat.first} ? 'active'"
+              >
+                <img
+                  th:src="@{/Product-Imgs/{file}(file=${image})}"
+                  class="d-block product-img"
+                  th:alt="${product.title}"
+                />
               </div>
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#productCarousel"
-                data-bs-slide="prev"
-              >
-                <span class="carousel-control-prev-icon"></span>
-              </button>
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#productCarousel"
-                data-bs-slide="next"
-              >
-                <span class="carousel-control-next-icon"></span>
-              </button>
             </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#productCarousel"
+              data-bs-slide="prev"
+            >
+              <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#productCarousel"
+              data-bs-slide="next"
+            >
+              <span class="carousel-control-next-icon"></span>
+            </button>
           </div>
         </div>
 
