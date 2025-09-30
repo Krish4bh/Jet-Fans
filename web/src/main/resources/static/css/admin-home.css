@@ -86,7 +86,8 @@
 }
 
 #add-image-field,
-#description {
+#description,
+#edit-product-description {
   width: 500px;
   border-color: rgb(135, 135, 135);
 }
@@ -104,6 +105,8 @@
 }
 
 #price-input,
-#mrp-input {
+#mrp-input,
+#edit-product-price,
+#edit-product-mrp {
   border-color: rgb(135, 135, 135);
 }
