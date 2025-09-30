@@ -176,7 +176,7 @@ public class ProductController {
         Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
         System.out.println("Image saved: " + fileName);
-        return fileName;
+        return "/Product-Imgs/" + fileName;
     }
 
     // Helper method to delete old images from disk
