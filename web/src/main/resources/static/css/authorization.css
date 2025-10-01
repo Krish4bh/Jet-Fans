@@ -1,0 +1,58 @@
+#logo {
+  font-family: Dancing Script, cursive;
+  font-size: 60px;
+}
+
+.form {
+  width: 400px;
+}
+
+.email-input {
+  width: 350px;
+}
+
+.login-pill {
+  width: 88px;
+}
+
+.heading {
+  font-size: 30px !important;
+}
+
+label {
+  color: black !important;
+}
+
+.input {
+  border: 1px solid black;
+}
+
+.error-msg {
+  font-size: 13px;
+  color: rgb(215, 0, 0);
+}
+
+.submit-btn {
+  border: 1px solid black;
+}
+
+.submit-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+.submit-btn:active {
+  background-color: white;
+  color: black;
+}
+
+.nav-pills .nav-link {
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.nav-pills .nav-link.active {
+  color: white;
+  background-color: rgb(0, 0, 0);
+}
