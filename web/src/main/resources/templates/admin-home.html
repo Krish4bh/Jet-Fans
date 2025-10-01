@@ -27,12 +27,14 @@
     <nav class="navbar">
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center">
-          <p
-            class="navbar-brand my-0 ms-5 me-0 p-0"
-            style="font-family: Dancing Script, cursive; font-size: 40px"
-          >
-            Jet Fans
-          </p>
+          <a th:href="@{/jet-fans/home}" class="text-decoration-none">
+              <p
+                      class="navbar-brand my-0 ms-5 me-0 p-0"
+                      style="font-family: Dancing Script, cursive; font-size: 40px"
+              >
+                  Jet Fans
+              </p>
+          </a>
         </div>
         <div>
           <p class="me-4 my-0 fs-4 fw-medium">Admin Dashboard</p>
