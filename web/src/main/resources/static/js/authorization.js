@@ -23,30 +23,40 @@ registerTab.addEventListener("click", () => {
 
 // Login Submit Event
 
-const form = document.querySelector(".form");
+const form = document.querySelector("#login-form");
 const loginEmailInput = document.querySelector("#lg-email-input");
 const loginPassword = document.querySelector("#lg-password-input");
 const lgEmailErrorMsg = document.querySelector("#lg-email-error");
 const lgPasswordErrorMsg = document.querySelector("#lg-password-error");
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
+  lgEmailErrorMsg.classList.add("d-none");
+  lgPasswordErrorMsg.classList.add("d-none");
+
   const email = loginEmailInput.value.trim();
   const password = loginPassword.value.trim();
 
-  const emailRegex = /^[^\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passRegex =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$/;
+
+  let isValid = true;
 
   if (!emailRegex.test(email)) {
     lgEmailErrorMsg.textContent = "Enter a valid email";
     lgEmailErrorMsg.classList.remove("d-none");
+    isValid = false;
   }
 
   if (!passRegex.test(password)) {
     lgPasswordErrorMsg.textContent =
       "Password (8 - 16) must contain 1 uppercase, 1 lowercase, 1 digit, 1 special character.";
     lgPasswordErrorMsg.classList.remove("d-none");
+    isValid = false;
+  }
+
+  if (!isValid) {
+    e.preventDefault();
   }
 });
 
@@ -82,6 +92,7 @@ loginPassword.addEventListener("input", () => {
 
 // Register Submit event
 
+const regForm = document.querySelector("#register-form");
 const nameInput = document.querySelector("#name-input");
 const ageInput = document.querySelector("#age-input");
 const regEmailInput = document.querySelector("#reg-email-input");
@@ -96,8 +107,13 @@ const confirmPasswordErrorMsg = document.querySelector(
   "#confirm-password-error"
 );
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+regForm.addEventListener("submit", (e) => {
+  // Clear all previous errors first
+  nameErrorMsg.classList.add("d-none");
+  ageErrorMsg.classList.add("d-none");
+  regEmailErrorMsg.classList.add("d-none");
+  regPasswordErrorMsg.classList.add("d-none");
+  confirmPasswordErrorMsg.classList.add("d-none");
 
   const name = nameInput.value.trim();
   const age = ageInput.value.trim();
@@ -109,32 +125,45 @@ form.addEventListener("submit", (e) => {
   const passRegex =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$/;
 
+  let isValid = true; // Track validation status
+
   if (name.length < 2) {
     nameErrorMsg.textContent = "Enter your name";
     nameErrorMsg.classList.remove("d-none");
+    isValid = false;
   }
 
   if (age < 9) {
     ageErrorMsg.textContent = "You must be older than 9";
     ageErrorMsg.classList.remove("d-none");
+    isValid = false;
   }
 
   if (!emailRegex.test(email)) {
     regEmailErrorMsg.textContent = "Enter a valid email";
     regEmailErrorMsg.classList.remove("d-none");
+    isValid = false;
   }
 
   if (!passRegex.test(password)) {
     regPasswordErrorMsg.textContent = "Enter strong password";
     regPasswordErrorMsg.classList.remove("d-none");
+    isValid = false;
   }
 
-  if (!confirmPassword.includes(password)) {
-    confirmPasswordErrorMsg.textContent = "Password does'nt match";
+  if (password !== confirmPassword) {
+    // Fixed comparison
+    confirmPasswordErrorMsg.textContent = "Passwords don't match";
     confirmPasswordErrorMsg.classList.remove("d-none");
+    isValid = false;
   }
-});
 
+  // Only prevent submission if validation fails
+  if (!isValid) {
+    e.preventDefault();
+  }
+  // If isValid is true, form submits normally
+});
 // ---------------------------------------------------------
 
 // Register input event
