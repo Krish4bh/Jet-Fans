@@ -10,10 +10,7 @@ import com.Jet_Fans.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,17 +32,14 @@ public class AdminController {
         return "admin-login";
     }
 
-    @PostMapping("/admin/verify-admin-credentials")
-    public String verifyCredentials(@ModelAttribute("admin") Admin admin, Model model) {
+    @PostMapping("/admin/authentication")
+    public String verifyCredentials(@RequestParam String email, @RequestParam String password, Model model) {
 
-        String adminEmail = admin.getEmail();
-        String adminPassword = admin.getPassword();
-
-        if (adminService.verifyAdmin(adminEmail, adminPassword)) {
+        if (adminService.verifyAdmin(email, password)) {
             return "redirect:/admin/admin-home";
         }
 
-        model.addAttribute("error", "Invalid email or password");
+        model.addAttribute("loginError", "Invalid email or password");
         return "admin-login";
     }
 
