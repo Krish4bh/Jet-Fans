@@ -86,7 +86,7 @@
                   </form>
                   <li class="nav-item">
                     <a
-                      th:href="@{/login/authorization}"
+                      th:href="@{/jet-fans/login}"
                       href="../Pre-Home/authorization.html"
                       class="nav-link d-none d-lg-block"
                       id="LogIn-link"
@@ -124,7 +124,7 @@
                   <!-- Login icon -->
                   <li class="nav-item">
                     <a
-                      th:href="@{/login/authorization}"
+                      th:href="@{/jet-fans/login}"
                       href="../Pre-Home/authorization.html"
                       class="nav-link d-block d-lg-none"
                     >
@@ -191,12 +191,16 @@
               <h5>Quick Links</h5>
               <ul class="list-unstyled">
                 <li>
-                  <a href="home.html" class="text-light text-decoration-none"
+                  <a
+                    th:href="@{/jet-fans/home}"
+                    href="home.html"
+                    class="text-light text-decoration-none"
                     >Home</a
                   >
                 </li>
                 <li>
                   <a
+                    th:href="@{/home/shop-now}"
                     href="products.html"
                     class="text-light text-decoration-none"
                     >Products</a
@@ -204,6 +208,7 @@
                 </li>
                 <li>
                   <a
+                    th:href="@{/jet-fans/login}"
                     href="../Pre-Home/authorization.html"
                     class="text-light text-decoration-none"
                     >Login</a
@@ -211,7 +216,7 @@
                 </li>
                 <li>
                   <a
-                          th:href="@{/jet-fans/contact-us}"
+                    th:href="@{/jet-fans/contact-us}"
                     href="/WebCode/Post-Home/contact-us.html"
                     class="text-light text-decoration-none"
                     >Contact Us</a
