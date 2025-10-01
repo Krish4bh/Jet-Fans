@@ -28,4 +28,9 @@ public class HomeController {
         return "contact-us";
     }
 
+    @GetMapping("/jet-fans/login")
+    public String getLogin() {
+        return "authorization";
+    }
+
 }
