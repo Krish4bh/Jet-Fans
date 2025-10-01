@@ -23,4 +23,9 @@ public class HomeController {
         return "shop-now";
     }
 
+    @GetMapping("/jet-fans/contact-us")
+    public String getContactPage() {
+        return "contact-us";
+    }
+
 }
