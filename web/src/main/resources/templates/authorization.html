@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="../static/css/authorization.css" />
     <link rel="stylesheet" th:href="@{/css/authorization.css}" />
   </head>
+
   <body>
     <div>
       <nav class="navbar navbar-light fixed-top">
@@ -31,34 +32,30 @@
     <div
       class="container-fluid vh-100 d-flex align-items-center justify-content-center"
     >
-      <form
-        action="submit"
-        class="p-4 border rounded-3 bg-white shadow-sm"
-        id="form"
-      >
+      <div id="tab-content">
         <div id="nav-tabs" class="d-flex justify-content-center">
           <ul class="nav nav-pills nav-fill" id="ul-tabs">
-            <li class="nav-item mx-3 login-pill">
+            <li class="nav-item mx-2 login-pill">
               <a href="#" class="nav-link active" id="login-tab">Login</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mx-2">
               <a href="#" class="nav-link" id="register-tab">Register</a>
             </li>
           </ul>
         </div>
-        <div id="tab-content">
+        <form action="" class="form bg-white" id="login-form">
           <div id="login-content">
-            <div class="d-flex justify-content-center mt-3 heading">
+            <div class="d-flex justify-content-center heading mt-4">
               <p class="heading">Welcome Back</p>
             </div>
             <div class="form-floating">
               <input
                 type="text"
-                class="form-control mb-1"
+                class="form-control mb-1 email-input"
                 id="lg-email-input"
                 placeholder="Email"
               />
-              <label for="email-input" class="form-label" id="label"
+              <label for="lg-email-input" class="form-label label" id=""
                 >Email</label
               >
             </div>
@@ -75,7 +72,7 @@
                 class="form-control mt-3"
                 placeholder="Password"
               />
-              <label for="password-input" class="form-label" id="label"
+              <label for="lg-password-input" class="form-label label" id=""
                 >Password</label
               >
             </div>
@@ -85,14 +82,16 @@
             </div>
 
             <div class="d-flex justify-content-center">
-              <button type="submit" class="btn mt-3" id="submit-btn">
+              <button type="submit" class="btn mt-3 submit-btn" id="">
                 Submit
               </button>
             </div>
           </div>
+        </form>
 
+        <form action="" class="form bg-white" id="register-form">
           <div class="d-none" id="register-content">
-            <div class="d-flex justify-content-center mt-3 heading">
+            <div class="d-flex justify-content-center mt-4 heading">
               <p class="heading">Create an Account</p>
             </div>
 
@@ -106,7 +105,9 @@
                     class="form-control mb-1"
                     placeholder="Full Name"
                   />
-                  <label for="name-input" id="label">Full Name</label>
+                  <label for="name-input" class="form-label label" id=""
+                    >Full Name</label
+                  >
                 </div>
 
                 <div>
@@ -122,7 +123,9 @@
                     id="age-input"
                     placeholder="Age"
                   />
-                  <label for="age-input" id="label">Age</label>
+                  <label for="age-input" class="form-label label" id=""
+                    >Age</label
+                  >
                 </div>
 
                 <div>
@@ -135,10 +138,12 @@
                 type="text"
                 name="Email"
                 id="reg-email-input"
-                class="form-control"
+                class="form-control email-input"
                 placeholder="Email"
               />
-              <label for="reg-email-input" id="label">Email</label>
+              <label for="reg-email-input" class="form-label label" id=""
+                >Email</label
+              >
             </div>
 
             <div>
@@ -154,7 +159,9 @@
                     class="form-control"
                     placeholder="Password"
                   />
-                  <label for="reg-password-input" id="label">Password</label>
+                  <label for="reg-password-input" class="form-label label" id=""
+                    >Password</label
+                  >
                 </div>
                 <div>
                   <p class="error-msg d-none ps-3" id="reg-password-error"></p>
@@ -183,11 +190,11 @@
               </div>
             </div>
             <div class="d-flex justify-content-center">
-              <button type="submit" class="btn" id="submit-btn">Submit</button>
+              <button type="submit" class="btn submit-btn" id="">Submit</button>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
 
     <script
@@ -196,6 +203,7 @@
       crossorigin="anonymous"
     ></script>
 
+    <script src="../static/js/authorization.js"></script>
     <script th:src="@{/js/authorization.js}"></script>
   </body>
 </html>
