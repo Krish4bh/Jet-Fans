@@ -18,10 +18,10 @@ public class User {
     @Column(name = "Email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "Phone_Number", nullable = false)
+    @Column(name = "Phone_Number", nullable = true)
     private String phone;
 
-    @Column(name = "Address", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "Address", nullable = true, columnDefinition = "TEXT")
     private String address;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
