@@ -19,7 +19,7 @@ public class UserController {
         if (userService.verifyUser(email, password)) {
             return "redirect:/jet-fans/home";
         }
-        model.addAttribute("error", "Invalid email or password");
+        model.addAttribute("loginError", "Invalid email or password");
         return "authorization";
     }
 
@@ -29,7 +29,7 @@ public class UserController {
             userService.createUser(user);
             return "redirect:/jet-fans/home";
         } catch (RuntimeException e) {
-            model.addAttribute("error", e.getMessage());
+            model.addAttribute("regError", e.getMessage());
             return "authorization";
         }
     }
