@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jet Fans</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../static/css/authorization.css" />
+    <link rel="stylesheet" th:href="@{/css/authorization.css}" />
+  </head>
+
+  <body>
+    <div>
+      <nav class="navbar navbar-light fixed-top">
+        <div class="container-fluid d-flex justify-content-center">
+          <p class="navbar-brand me-0" id="logo">Jet Fans</p>
+        </div>
+      </nav>
+    </div>
+    <div
+      class="container-fluid vh-100 d-flex align-items-center justify-content-center"
+    >
+      <div id="tab-content">
+        <form
+          th:action="@{/admin/authentication}"
+          class="form bg-white"
+          id="login-form"
+          method="post"
+        >
+          <div id="login-content">
+            <div class="d-flex justify-content-center heading mt-4">
+              <p class="heading">Admin Login</p>
+            </div>
+            <div class="form-floating">
+              <input
+                type="text"
+                class="form-control mb-1 email-input"
+                id="lg-email-input"
+                placeholder="Email"
+                name="email"
+              />
+              <label for="lg-email-input" class="form-label label" id=""
+                >Email</label
+              >
+            </div>
+
+            <div>
+              <p class="error-msg d-none ps-3" id="lg-email-error"></p>
+            </div>
+
+            <div class="form-floating">
+              <input
+                type="password"
+                name="password"
+                id="lg-password-input"
+                class="form-control mt-3"
+                placeholder="Password"
+              />
+              <label for="lg-password-input" class="form-label label" id=""
+                >Password</label
+              >
+            </div>
+
+            <div class="ps-3">
+              <p class="error-msg d-none" id="lg-password-error"></p>
+            </div>
+
+            <div>
+              <p
+                class="error-msg ps-3 text-center"
+                id="validation-error"
+                th:if="${loginError}"
+                th:text="${loginError}"
+              ></p>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn mt-3 submit-btn" id="">
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="../static/js/authorization.js"></script>
+    <script th:src="@{/js/authorization.js}"></script>
+  </body>
+</html>
