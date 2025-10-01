@@ -23,7 +23,7 @@ public class UserController {
         return "user-login";
     }
 
-    @PostMapping("user/register")
+    @PostMapping("/user/register")
     private String userRegister(@ModelAttribute("user") User user, Model model) {
         try {
             userService.createUser(user);
