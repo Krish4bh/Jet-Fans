@@ -43,7 +43,12 @@
             </li>
           </ul>
         </div>
-        <form action="" class="form bg-white" id="login-form">
+        <form
+          th:action="@{/user/login}"
+          class="form bg-white"
+          id="login-form"
+          method="post"
+        >
           <div id="login-content">
             <div class="d-flex justify-content-center heading mt-4">
               <p class="heading">Welcome Back</p>
@@ -54,6 +59,7 @@
                 class="form-control mb-1 email-input"
                 id="lg-email-input"
                 placeholder="Email"
+                name="email"
               />
               <label for="lg-email-input" class="form-label label" id=""
                 >Email</label
@@ -81,6 +87,15 @@
               <p class="error-msg d-none" id="lg-password-error"></p>
             </div>
 
+            <div>
+              <p
+                class="error-msg ps-3 text-center"
+                id="validation-error"
+                th:if="${loginError}"
+                th:text="${loginError}"
+              ></p>
+            </div>
+
             <div class="d-flex justify-content-center">
               <button type="submit" class="btn mt-3 submit-btn" id="">
                 Submit
@@ -89,7 +104,12 @@
           </div>
         </form>
 
-        <form action="" class="form bg-white" id="register-form">
+        <form
+          th:action="@{/user/register}"
+          class="form bg-white"
+          id="register-form"
+          method="post"
+        >
           <div class="d-none" id="register-content">
             <div class="d-flex justify-content-center mt-4 heading">
               <p class="heading">Create an Account</p>
@@ -136,7 +156,7 @@
             <div class="form-floating mt-3">
               <input
                 type="text"
-                name="Email"
+                name="email"
                 id="reg-email-input"
                 class="form-control email-input"
                 placeholder="Email"
@@ -172,7 +192,7 @@
                 <div class="form-floating mt-lg-0">
                   <input
                     type="password"
-                    name="password"
+                    name="confirmPassword"
                     id="confirm-password-input"
                     class="form-control"
                     placeholder="Confirm Password"
@@ -188,6 +208,14 @@
                   ></p>
                 </div>
               </div>
+            </div>
+            <div>
+              <p
+                class="error-msg ps-3 text-center"
+                id="register-error"
+                th:if="${regError}"
+                th:text="${regError}"
+              ></p>
             </div>
             <div class="d-flex justify-content-center">
               <button type="submit" class="btn submit-btn" id="">Submit</button>
