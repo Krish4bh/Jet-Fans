@@ -50,9 +50,10 @@ public class AdminService {
     public boolean verifyAdmin(String email, String password) {
         Admin admin = adminRepo.findByEmail(email);
 
-        if (admin.getPassword() == password) {
-            return true;
+        if (admin == null) {
+            return false;
         }
-        return false;
+
+        return admin.getPassword().equals(password);
     }
 }
