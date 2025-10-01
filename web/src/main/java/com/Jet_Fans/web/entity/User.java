@@ -35,6 +35,12 @@ public class User {
         this.orders = orders;
     }
 
+    @Column(name = "Password", nullable = false)
+    private String password;
+
+    @Column(name = "Confirm_Password", nullable = false)
+    private String confirmPassword;
+
     public Long getId() {
         return id;
     }
@@ -83,6 +89,11 @@ public class User {
         this.password = password;
     }
 
-    @Column(name = "Password", nullable = false)
-    private String password;
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 }
