@@ -20,7 +20,7 @@ public class UserController {
             return "redirect:/jet-fans/home";
         }
         model.addAttribute("error", "Invalid email or password");
-        return "user-login";
+        return "authorization";
     }
 
     @PostMapping("/user/register")
@@ -30,7 +30,7 @@ public class UserController {
             return "redirect:/jet-fans/home";
         } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
-            return "user-login";
+            return "authorization";
         }
     }
 
