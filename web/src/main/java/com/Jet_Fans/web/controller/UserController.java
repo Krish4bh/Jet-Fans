@@ -29,7 +29,7 @@ public class UserController {
             userService.createUser(user);
             return "redirect:/jet-fans/home";
         } catch (RuntimeException e) {
-            model.addAttribute(e.getMessage());
+            model.addAttribute("error", e.getMessage());
             return "user-login";
         }
     }
