@@ -24,6 +24,13 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @GetMapping("/search")
+    public String searchProductByKeyword(@RequestParam String keyword, Model model) {
+        List<Product> searchResult = productService.getAllByTitle(keyword);
+        model.addAttribute("searchResult", searchResult);
+        return "shop-now";
+    }
+
     @GetMapping("/product/{id}")
     public String productDetail(@PathVariable Long id, Model model) {
         Product product = productService.getById(id);
