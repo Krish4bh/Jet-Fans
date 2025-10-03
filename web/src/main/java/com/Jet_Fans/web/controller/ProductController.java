@@ -27,7 +27,7 @@ public class ProductController {
     @GetMapping("/search")
     public String searchProductByKeyword(@RequestParam String keyword, Model model) {
         List<Product> searchResult = productService.getAllByTitle(keyword);
-        model.addAttribute("searchResult", searchResult);
+        model.addAttribute("products", searchResult);
         return "shop-now";
     }
 
