@@ -31,6 +31,12 @@ public class ProductController {
         return "shop-now";
     }
 
+    @GetMapping("/home/shop-now")
+    public String listProducts(Model model) {
+        model.addAttribute("products", productService.getAll());
+        return "shop-now";
+    }
+
     @GetMapping("/product/{id}")
     public String productDetail(@PathVariable Long id, Model model) {
         Product product = productService.getById(id);
