@@ -17,12 +17,6 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/home/shop-now")
-    public String listProducts(Model model) {
-        model.addAttribute("products", productService.getAll());
-        return "shop-now";
-    }
-
     @GetMapping("/jet-fans/contact-us")
     public String getContactPage() {
         return "contact-us";
