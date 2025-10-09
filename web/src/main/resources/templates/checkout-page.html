@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jet Fans</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+
+    <link rel="stylesheet" th:href="@{/css/fragments.css}" />
+    <link rel="stylesheet" href="../static/css/checkout-page.css" />
+    <link rel="stylesheet" th:href="@{/css/checkout.css}" />
+    <link rel="stylesheet" href="../static/css/fragments.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-light fixed-top">
+      <div class="container-fluid">
+        <div class="row w-100">
+          <div
+            class="col-1 col-lg-1 d-flex justify-content-center align-items-center"
+          >
+            <button
+              class="btn btn-outline-dark d-none d-lg-block"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasLeft"
+              id="offcanvas-btn"
+              type="button"
+            >
+              ☰
+            </button>
+          </div>
+
+          <div class="col-12 col-lg-3 text-center">
+            <div class="brand-name">
+              <a
+                class="logo navbar-brand me-0"
+                th:href="@{/jet-fans/home}"
+                href="../templates/home.html"
+                style="font-family: Dancing Script, cursive"
+                >Jet Fans
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-3 align-items-center mt-4 p-0">
+            <p class="checkout text-center mb-0 fw-bold text-dark">Checkout</p>
+          </div>
+          <div class="col-12 col-lg-5 pe-0">
+            <div class="right-section d-flex">
+              <button
+                class="btn btn-outline-dark d-inline-block d-lg-none align-items-start"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasLeft"
+                type="button"
+              >
+                ☰
+              </button>
+
+              <ul class="nav d-flex ms-auto justify-content-center mt-4">
+                <li class="nav-item">
+                  <a
+                    th:href="@{/jet-fans/login}"
+                    href="../Pre-Home/authorization.html"
+                    class="nav-link d-none d-lg-block text-dark"
+                    id="LogIn-link"
+                    >Log IN</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    th:href="@{/jet-fans/contact-us}"
+                    href="/WebCode/Post-Home/contact-us.html"
+                    class="nav-link d-none d-lg-block text-dark"
+                    id="ContactUs-link"
+                    >Contact Us</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    href="#"
+                    class="nav-link d-none d-lg-block text-dark"
+                    id="ShoppingCart-link"
+                    data-bs-target="#offcanvas-right"
+                    data-bs-toggle="offcanvas"
+                    >Shopping Cart</a
+                  >
+                </li>
+              </ul>
+              <ul class="nav d-flex ms-auto m-lg-0">
+                <!-- Search icon (mobile only) -->
+                <li class="nav-item">
+                  <a href="#" class="nav-link d-block d-lg-none">
+                    <i class="bi bi-search icon"></i>
+                  </a>
+                </li>
+
+                <!-- Login icon -->
+                <li class="nav-item">
+                  <a
+                    th:href="@{/jet-fans/login}"
+                    href="../Pre-Home/authorization.html"
+                    class="nav-link d-block d-lg-none"
+                  >
+                    <i class="bi bi-person icon"></i>
+                  </a>
+                </li>
+
+                <!-- Cart icon -->
+                <li class="nav-item">
+                  <a href="#" class="nav-link d-block d-lg-none">
+                    <i class="bi bi-cart icon"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="offcanvas offcanvas-start"
+        id="offcanvasLeft"
+        tabindex="-1"
+        aria-labelledby="offcanvasLabel"
+      >
+        <div class="offcanvas-header">
+          <h4 class="offcanvas-title" id="offcanvasLabel">SideBar</h4>
+          <button
+            class="btn-close"
+            type="button"
+            data-bs-dismiss="offcanvas"
+            aria-label="close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <p>Some content ...</p>
+        </div>
+      </div>
+
+      <div class="offcanvas offcanvas-end" id="offcanvas-right" tabindex="-1">
+        <div class="offcanvas-header">
+          <h4>Your Cart</h4>
+          <button
+            class="btn-close"
+            type="button"
+            data-bs-dismiss="offcanvas"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <p>Your items in cart</p>
+        </div>
+      </div>
+    </nav>
+
+    <div th:replace="~{fragments :: footer}"></div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
