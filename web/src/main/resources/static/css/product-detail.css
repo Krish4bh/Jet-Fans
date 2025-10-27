@@ -8,11 +8,27 @@
   border-radius: 12px;
 }
 
-.carousel-item img {
-  height: 400px;
-  object-fit: contain;
-  width: 100%;
+/* Fixed carousel item height for consistent display */
+.carousel-item {
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
 }
+
+.carousel-item img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain; /* Keeps entire image visible without cropping */
+  object-position: center;
+  padding: 20px; /* Breathing room around image */
+}
+
+/* Alternative: Use this if you want images to fill the entire space (may crop) */
+/* .carousel-item img {
+  object-fit: cover;
+} */
 
 .carousel-control-prev,
 .carousel-control-next {
@@ -29,6 +45,7 @@
   border-radius: 12px;
   background: white;
 }
+
 .product-category {
   background: linear-gradient(135deg, #667eea, #764ba2);
 }
@@ -114,3 +131,25 @@
   color: var(--accent-color);
   margin-bottom: 0.5rem;
 }
+
+/* Responsive adjustments for different screen sizes */
+@media (max-width: 768px) {
+  .carousel-item {
+    height: 400px;
+  }
+
+  .carousel-item img {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-item {
+    height: 320px;
+  }
+
+  .carousel-item img {
+    padding: 10px;
+  }
+}
+
