@@ -42,10 +42,9 @@
         <div class="row justify-content-around">
           <div class="col-3" th:each="product : ${products}">
             <div class="card border border-secondary shadow-md">
-              <a href="">
+              <a th:href="@{/product/{id}(id=${product.id})}">
                 <img
-                  th:src="@{images/{img}(img=${product.image})}"
-                  src="/Product-Imgs/stand-fan.jpg"
+                  th:src="@{/Product-Imgs/{img}(img=${#lists.isEmpty(product.images) ? 'stand-fan.jpg' : product.images[0]})}"
                   class="card-img-top"
                   alt="Product Image"
                 />
