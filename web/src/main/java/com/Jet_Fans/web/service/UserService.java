@@ -62,9 +62,11 @@ public class UserService {
         userRepo.deleteById(id);
     }
 
-    public boolean verifyUser(String email, String password) {
-        User userFromDb = userRepo.findByEmail(email).orElseThrow(() -> new RuntimeException("User with email " + email + " not found."));
-
-        return userFromDb.getPassword().equals(password);
+    public User verifyUser(String email, String password) {
+        User user = userRepo.findByEmail(email).orElseThrow(() -> new RuntimeException("User with id " + id + " not found."));
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        }
+        return null;
     }
 }
