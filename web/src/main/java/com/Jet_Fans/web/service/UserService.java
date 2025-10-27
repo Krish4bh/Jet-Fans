@@ -63,7 +63,7 @@ public class UserService {
     }
 
     public User verifyUser(String email, String password) {
-        User user = userRepo.findByEmail(email).orElseThrow(() -> new RuntimeException("User with id " + id + " not found."));
+        User user = userRepo.findByEmail(email).orElseThrow(() -> new RuntimeException("User with email " + email + " not found."));
         if (user != null && user.getPassword().equals(password)) {
             return user;
         }
