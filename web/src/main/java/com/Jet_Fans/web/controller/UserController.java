@@ -3,6 +3,7 @@ package com.Jet_Fans.web.controller;
 
 import com.Jet_Fans.web.entity.User;
 import com.Jet_Fans.web.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +16,15 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/user/login")
-    private String userLogin(@RequestParam String email, @RequestParam String password, Model model) {
-        if (userService.verifyUser(email, password)) {
+    private String userLogin(@RequestParam String email,
+                             @RequestParam String password,
+                             HttpSession session,
+                             Model model) {
+
+        User user = userService.verifyUser(email, password);   
+
+        if (user != null) {
+            session.setAttribute("loggedInUser", user);
             return "redirect:/jet-fans/home";
         }
         model.addAttribute("loginError", "Invalid email or password");
