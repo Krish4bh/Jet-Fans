@@ -21,7 +21,7 @@ public class UserController {
                              HttpSession session,
                              Model model) {
 
-        User user = userService.verifyUser(email, password);   
+        User user = userService.verifyUser(email, password);
 
         if (user != null) {
             session.setAttribute("loggedInUser", user);
