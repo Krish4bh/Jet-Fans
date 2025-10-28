@@ -1,10 +1,13 @@
 package com.Jet_Fans.web.entity;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "carts")
+@Table(name = "carts", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"cart_id", "product_id"})
+})
 public class Cart {
 
     @Id
@@ -22,7 +25,7 @@ public class Cart {
     private User user;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartItem> cartItem;
+    private List<CartItem> cartItem = new ArrayList<>();;
 
     @PreUpdate
     public void onUpdate() {
