@@ -7,6 +7,7 @@ import com.Jet_Fans.web.repository.CartItemRepo;
 import com.Jet_Fans.web.repository.CartRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,36 +21,39 @@ public class CartItemService {
     @Autowired
     private CartRepo cartRepo;
 
+    @Transactional
     public CartItem createCartItem(Cart cart, Product product, int quantity) {
-
+        // Try to fetch an existing item first
         CartItem itemFromDb = cartItemRepo.findByCartIdAndProductId(cart.getId(), product.getId()).orElse(null);
 
         if (itemFromDb != null) {
+            // Just update quantity
             itemFromDb.setQuantity(itemFromDb.getQuantity() + quantity);
             itemFromDb.setItemTotalPrice(itemFromDb.getProduct().getPrice() * itemFromDb.getQuantity());
-
-            cart.setTotalPrice(
-                    cart.getCartItem().stream().mapToDouble(CartItem::getItemTotalPrice).sum()
-            );
-
             cartRepo.save(cart);
             return cartItemRepo.save(itemFromDb);
-        } else {
+        }
+
+        // Use try-catch to handle race conditions safely
+        try {
             CartItem newItem = new CartItem();
             newItem.setCart(cart);
             newItem.setProduct(product);
             newItem.setQuantity(quantity);
             newItem.setItemTotalPrice(product.getPrice() * quantity);
-
             cart.getCartItem().add(newItem);
-            cart.setTotalPrice(
-                    cart.getCartItem().stream().mapToDouble(CartItem::getItemTotalPrice).sum()
-            );
             cartRepo.save(cart);
-
             return cartItemRepo.save(newItem);
+        } catch (DataIntegrityViolationException e) {
+            // If another thread already added the same item, just update it instead
+            CartItem existing = cartItemRepo.findByCartIdAndProductId(cart.getId(), product.getId())
+                    .orElseThrow();
+            existing.setQuantity(existing.getQuantity() + quantity);
+            existing.setItemTotalPrice(existing.getProduct().getPrice() * existing.getQuantity());
+            return cartItemRepo.save(existing);
         }
     }
+
 
     @Transactional
     public CartItem updateQuantity(Long cartItemId, int quantity) {
