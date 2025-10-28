@@ -84,10 +84,17 @@
                   >
                 </p>
 
-                <form th:action="@{/add/cart}" class="form" id="add-to-cart">
+                <form th:action="@{/add/cart}" method="post" class="form" id="add-to-cart">
                   <input type="hidden" name="id" th:value="${product.id}" />
                   <button class="btn btn-warning">Add to Cart</button>
                 </form>
+
+                  <div th:if="${success}" class="alert alert-success text-center">
+                      <span th:text="${success}"></span>
+                  </div>
+                  <div th:if="${loginMessage}" class="alert alert-warning text-center">
+                      <span th:text="${loginMessage}"></span>
+                  </div>
               </div>
             </div>
           </div>
