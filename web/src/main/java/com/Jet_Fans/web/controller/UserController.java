@@ -15,6 +15,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/user/login")
+    public String showLoginPage() {
+        return "authorization"; // the name of your login template (Thymeleaf)
+    }
+
     @PostMapping("/user/login")
     private String userLogin(@RequestParam String email,
                              @RequestParam String password,
