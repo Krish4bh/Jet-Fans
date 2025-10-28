@@ -46,6 +46,6 @@ public class CartController {
         cartItemService.createCartItem(cart, product, 1);
 
         redirectAttributes.addFlashAttribute("success", "Product added to your cart!");
-        return "redirect:/shop-now";
+        return "redirect:/home/shop-now";
     }
 }
