@@ -49,6 +49,7 @@
           id="login-form"
           method="post"
         >
+            <input type="hidden" name="redirect" th:value="${redirect}" />
           <div id="login-content">
             <div class="d-flex justify-content-center heading mt-4">
               <p class="heading">Welcome Back</p>
