@@ -38,7 +38,7 @@
             <div class="card border border-secondary shadow-md">
               <a th:href="@{/product/{id}(id=${product.id})}">
                 <img
-                  th:src="@{/Product-Imgs/{img}(img=${#lists.isEmpty(product.images) ? 'stand-fan.jpg' : product.images[0]})}"
+                  th:src="@{/Product-Imgs/{img}(img=${#lists.isEmpty(product.images) ? 'blank-img.png' : product.images[0]})}"
                   class="card-img-top"
                   alt="Product Image"
                 />
@@ -78,7 +78,12 @@
                   >
                 </p>
 
-                <form th:action="@{/add/cart}" method="post" class="form" id="add-to-cart">
+                <form
+                  th:action="@{/add/cart}"
+                  method="post"
+                  class="form"
+                  id="add-to-cart"
+                >
                   <input type="hidden" name="id" th:value="${product.id}" />
                   <button class="btn btn-warning">Add to Cart</button>
                 </form>
@@ -87,44 +92,55 @@
           </div>
         </div>
       </div>
-        <!-- Toast Container -->
-        <div id="toast-container"
-             style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
+      <!-- Toast Container -->
+      <div
+        id="toast-container"
+        style="position: fixed; top: 20px; right: 20px; z-index: 9999"
+      ></div>
 
-        <!-- Toast Template (hidden initially) -->
-        <div id="toast-template"
-             style="display:none; background-color: #198754; color: white; padding: 10px 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); font-weight: 500;">
-        </div>
+      <!-- Toast Template (hidden initially) -->
+      <div
+        id="toast-template"
+        style="
+          display: none;
+          background-color: #198754;
+          color: white;
+          padding: 10px 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          font-weight: 500;
+        "
+      ></div>
     </main>
 
     <div th:replace="~{fragments :: footer}"></div>
 
     <script th:inline="javascript">
-        /*<![CDATA[*/
-            // Show toast message if success or loginMessage exist
-            const successMsg = /*[[${success}]]*/ null;
-            const loginMsg = /*[[${loginMessage}]]*/ null;
+      /*<![CDATA[*/
+      // Show toast message if success or loginMessage exist
+      const successMsg = /*[[${success}]]*/ null;
+      const loginMsg = /*[[${loginMessage}]]*/ null;
 
-            if (successMsg || loginMsg) {
-                const toastContainer = document.getElementById("toast-container");
-                const toastTemplate = document.getElementById("toast-template");
+      if (successMsg || loginMsg) {
+        const toastContainer = document.getElementById("toast-container");
+        const toastTemplate = document.getElementById("toast-template");
 
-                const toast = toastTemplate.cloneNode(true);
-                toast.style.display = "block";
-                toast.textContent = successMsg || loginMsg;
+        const toast = toastTemplate.cloneNode(true);
+        toast.style.display = "block";
+        toast.textContent = successMsg || loginMsg;
 
-                // Set color based on message type
-                toast.style.backgroundColor = successMsg ? "#198754" : "#ffc107";
-                toastContainer.appendChild(toast);
+        // Set color based on message type
+        toast.style.backgroundColor = successMsg ? "#198754" : "#ffc107";
+        toastContainer.appendChild(toast);
 
-                // Animate fade-out after 3 seconds
-                setTimeout(() => {
-                    toast.style.transition = "opacity 0.5s ease";
-                    toast.style.opacity = "0";
-                    setTimeout(() => toast.remove(), 500);
-                }, 3000);
-            }
-        /*]]>*/
+        // Animate fade-out after 3 seconds
+        setTimeout(() => {
+          toast.style.transition = "opacity 0.5s ease";
+          toast.style.opacity = "0";
+          setTimeout(() => toast.remove(), 500);
+        }, 3000);
+      }
+      /*]]>*/
     </script>
 
     <script
