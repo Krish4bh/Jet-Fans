@@ -1,6 +1,7 @@
 package com.Jet_Fans.web.controller;
 
 import com.Jet_Fans.web.entity.Cart;
+import com.Jet_Fans.web.entity.CartItem;
 import com.Jet_Fans.web.entity.Product;
 import com.Jet_Fans.web.entity.User;
 import com.Jet_Fans.web.service.CartItemService;
@@ -56,19 +57,27 @@ public class CartController {
     @GetMapping("/cart")
     public String showCart(Model model, HttpSession session) {
         User user = (User) session.getAttribute("loggedInUser");
+
         if (user == null) {
-            model.addAttribute("loginMessage", "Please log in to view your cart.");
-            return "UserLogin"; // or redirect to login page
+            model.addAttribute("cartItems", List.of());
+            model.addAttribute("totalPrice", 0.0);
+            return "fragments :: cartFragment";
         }
 
         Cart cart = cartService.getCartByUserId(user.getId());
-        if (cart != null && cart.getCartItem() != null) {
+
+        if (cart != null && cart.getCartItem() != null && !cart.getCartItem().isEmpty()) {
             model.addAttribute("cartItems", cart.getCartItem());
+            double total = cart.getCartItem()
+                    .stream()
+                    .mapToDouble(CartItem::getItemTotalPrice)
+                    .sum();
+            model.addAttribute("totalPrice", total);
         } else {
             model.addAttribute("cartItems", List.of());
+            model.addAttribute("totalPrice", 0.0);
         }
 
         return "fragments :: cartFragment";
     }
-
 }
