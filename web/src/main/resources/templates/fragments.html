@@ -21,6 +21,8 @@
       rel="stylesheet"
       href="/web/src/main/resources/static/css/fragments.css"
     />
+
+    <link rel="stylesheet" th:href="@{/css/fragments.css}" />
   </head>
   <body>
     <div th:fragment="navbar">
@@ -167,21 +169,87 @@
             <p>Some content ...</p>
           </div>
         </div>
+      </nav>
+      <!-- 🛒 Shopping Cart Offcanvas -->
+      <div class="offcanvas offcanvas-end" id="offcanvas-right" tabindex="-1">
+        <div class="offcanvas-header border-bottom">
+          <h4 class="mb-0">Your Cart</h4>
+          <button
+            class="btn-close"
+            type="button"
+            data-bs-dismiss="offcanvas"
+          ></button>
+        </div>
 
-        <div class="offcanvas offcanvas-end" id="offcanvas-right" tabindex="-1">
-          <div class="offcanvas-header">
-            <h4>Your Cart</h4>
-            <button
-              class="btn-close"
-              type="button"
-              data-bs-dismiss="offcanvas"
-            ></button>
-          </div>
-          <div class="offcanvas-body">
-            <p>Your items in cart</p>
+        <!-- Cart Body (Dynamic Content Fragment) -->
+        <div class="offcanvas-body p-0">
+          <div id="cart-body-container" th:fragment="cartFragment">
+            <!-- Empty Cart -->
+            <div th:if="${#lists.isEmpty(cartItems)}" class="text-center mt-5">
+              <i class="bi bi-cart-x" style="font-size: 3rem"></i>
+              <p class="mt-3">Your cart is empty.</p>
+            </div>
+
+            <!-- Cart With Items -->
+            <div th:if="${!#lists.isEmpty(cartItems)}">
+              <ul class="list-group list-group-flush mb-3">
+                <li
+                  class="list-group-item d-flex align-items-center"
+                  th:each="item : ${cartItems}"
+                >
+                  <!-- Product Image -->
+                  <img
+                    th:if="${!#lists.isEmpty(item.product.images)}"
+                    th:src="@{'/Product-Imgs/' + ${item.product.images[0]}}"
+                    onerror="this.onerror=null;this.src='/Product-Imgs/blank-img.png';"
+                    alt="Product Image"
+                    class="me-3 rounded"
+                    style="width: 60px; height: 60px; object-fit: cover"
+                  />
+
+                  <img
+                    th:if="${#lists.isEmpty(item.product.images)}"
+                    th:src="@{'/Product-Imgs/' + ${item.product.image}}"
+                    onerror="this.onerror=null;this.src='/Product-Imgs/blank-img.png';"
+                    alt="Product Image"
+                    class="me-3 rounded"
+                    style="width: 60px; height: 60px; object-fit: cover"
+                  />
+
+                  <!-- Product Details -->
+                  <div class="flex-grow-1">
+                    <strong th:text="${item.product.title}"></strong><br />
+                    <small th:text="'Qty: ' + ${item.quantity}"></small>
+                  </div>
+
+                  <!-- Price -->
+                  <span
+                    th:text="'₹' + ${item.itemTotalPrice}"
+                    class="fw-semibold text-end"
+                  ></span>
+                </li>
+              </ul>
+
+              <!-- Total + Checkout -->
+              <div class="border-top pt-3">
+                <div class="d-flex justify-content-between mb-3">
+                  <strong>Total:</strong>
+                  <strong>
+                    ₹<span
+                      th:text="${#numbers.formatDecimal(totalPrice, 1, 2)}"
+                    ></span>
+                  </strong>
+                </div>
+                <div class="d-grid">
+                  <a th:href="@{/checkout}" class="btn btn-success">
+                    Proceed to Checkout
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </nav>
+      </div>
     </div>
 
     <div th:fragment="footer">
@@ -255,5 +323,54 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script>
+      document
+        .getElementById("offcanvas-right")
+        .addEventListener("show.bs.offcanvas", function () {
+          console.log("🛒 Shopping cart offcanvas triggered");
+
+          // Show loading state
+          const cartBody = document.getElementById("cart-body-container");
+          cartBody.innerHTML = `
+        <div class="text-center mt-5">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="mt-3">Loading cart...</p>
+        </div>
+      `;
+
+          fetch("/cart")
+            .then((response) => {
+              console.log("📡 Response status:", response.status);
+              console.log(
+                "📡 Response headers:",
+                response.headers.get("content-type")
+              );
+
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              return response.text();
+            })
+            .then((html) => {
+              console.log("✅ Cart HTML received (length):", html.length);
+              console.log("📦 Cart HTML preview:", html.substring(0, 200));
+
+              cartBody.innerHTML = html;
+              console.log("✅ Cart content updated in DOM");
+            })
+            .catch((err) => {
+              console.error("❌ Error loading cart:", err);
+              cartBody.innerHTML = `
+            <div class="alert alert-danger m-3">
+              <i class="bi bi-exclamation-triangle"></i>
+              Failed to load cart. Please refresh the page and try again.
+              <br><small>Error: ${err.message}</small>
+            </div>
+          `;
+            });
+        });
+    </script>
   </body>
 </html>
