@@ -51,7 +51,7 @@
               </a>
             </div>
           </div>
-          <div class="col-lg-3 align-items-center mt-4 p-0">
+          <div class="col-lg-3 align-items-center mt-3 p-0">
             <p class="checkout text-center mb-0 fw-bold text-dark">Checkout</p>
           </div>
           <div class="col-12 col-lg-5 pe-0">
@@ -159,6 +159,137 @@
         </div>
       </div>
     </nav>
+
+    <div class="container mt-5 pt-5">
+      <!-- Wrap the form around middle + right columns -->
+      <form th:action="@{/confirm-order}" th:object="${order}" method="post">
+        <div class="row g-4">
+          <!-- 🛒 Left: Cart Items -->
+          <div class="col-lg-4">
+            <div class="card w-100">
+              <div
+                class="card-header bg-dark text-white d-flex justify-content-center align-items-center"
+                style="height: 55px"
+              >
+                <h5 class="mb-0">Your Cart</h5>
+              </div>
+              <div class="card-body">
+                <div th:if="${#lists.isEmpty(cartItems)}">
+                  Your cart is empty.
+                </div>
+                <ul class="list-group" th:if="${!#lists.isEmpty(cartItems)}">
+                  <li class="list-group-item" th:each="item : ${cartItems}">
+                    <div class="d-flex justify-content-between">
+                      <span th:text="${item.product.title}"></span>
+                      <span th:text="'₹' + ${item.itemTotalPrice}"></span>
+                    </div>
+                  </li>
+                </ul>
+                <div class="mt-3 text-end">
+                  <strong>Total: ₹<span th:text="${totalPrice}"></span></strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 🧍 Middle: User Details Form -->
+          <div class="col-lg-4">
+            <div class="card w-100">
+              <div
+                class="card-header bg-dark text-white d-flex justify-content-center align-items-center"
+                style="height: 55px"
+              >
+                <h5 class="mb-0">Shipping Details</h5>
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <label class="form-label">Full Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:value="${user.fullName}"
+                    readonly
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Address</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{address}"
+                    placeholder="Enter your address"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Phone Number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{phone}"
+                    placeholder="Enter phone number"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Additional Notes</label>
+                  <textarea
+                    class="form-control"
+                    th:field="*{note}"
+                    placeholder="Any instructions..."
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 💳 Right: Payment Section -->
+          <div class="col-lg-4">
+            <div class="card w-100">
+              <div
+                class="card-header bg-dark text-white d-flex justify-content-center align-items-center"
+                style="height: 55px"
+              >
+                <h5 class="mb-0">Payment</h5>
+              </div>
+              <div class="card-body text-center">
+                <p>Choose a payment method:</p>
+                <select class="form-select mb-3" th:field="*{paymentMethod}">
+                  <option value="COD">Cash on Delivery</option>
+                  <option value="CARD">Credit/Debit Card</option>
+                </select>
+                <button type="submit" class="btn btn-success w-100">
+                  Confirm Order
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- ✅ Order Confirmation Modal -->
+    <div
+      class="modal fade"
+      id="orderConfirmedModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title">Order Confirmed!</h5>
+          </div>
+          <div class="modal-body">
+            <p>Your order has been successfully placed.</p>
+            <p><strong>Order ID:</strong> <span th:text="${orderId}"></span></p>
+          </div>
+          <div class="modal-footer">
+            <a th:href="@{/jet-fans/home}" class="btn btn-dark">Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div th:replace="~{fragments :: footer}"></div>
 
