@@ -188,6 +188,7 @@
                 <div class="mt-3 text-end">
                   <strong>Total: ₹<span th:text="${totalPrice}"></span></strong>
                 </div>
+                <hr />
               </div>
             </div>
           </div>
@@ -252,11 +253,24 @@
               >
                 <h5 class="mb-0">Payment</h5>
               </div>
-              <div class="card-body text-center">
+              <div class="card-body text-center fs-6 fw-semibold">
                 <p>Choose a payment method:</p>
+
+                <div class="row justify-content-between">
+                  <div class="col-auto ms-3">
+                    <input class="" type="radio" />
+                  </div>
+                  <div class="col-auto me-3">
+                    <span class="text-dark fw-semibold fs-5"
+                      >Cash on Delivery</span
+                    >
+                  </div>
+                </div>
+                <hr />
                 <select class="form-select mb-3" th:field="*{paymentMethod}">
-                  <option value="COD">Cash on Delivery</option>
-                  <option value="CARD">Credit/Debit Card</option>
+                  <option value="CARD" default selected>
+                    Credit/Debit Card
+                  </option>
                 </select>
                 <button type="submit" class="btn btn-success w-100">
                   Confirm Order
