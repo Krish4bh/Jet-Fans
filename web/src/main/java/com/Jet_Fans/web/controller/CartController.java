@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -80,4 +81,26 @@ public class CartController {
 
         return "fragments :: cartFragment";
     }
+
+    @PostMapping("/cart/update")
+    @ResponseBody
+    public String updateCartItem(@RequestParam Long itemId, @RequestParam int quantity, HttpSession session) {
+        User user = (User) session.getAttribute("loggedInUser");
+        if (user == null) {
+            return "redirect:/user/login";
+        }
+
+        try {
+            if (quantity <= 0) {
+                cartItemService.deleteCartItem(itemId);
+            } else {
+                cartItemService.updateQuantity(itemId, quantity);
+            }
+            return "success";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
+    }
+
 }
