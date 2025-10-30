@@ -23,36 +23,30 @@ public class CartItemService {
 
     @Transactional
     public CartItem createCartItem(Cart cart, Product product, int quantity) {
-        // Try to fetch an existing item first
-        CartItem itemFromDb = cartItemRepo.findByCartIdAndProductId(cart.getId(), product.getId()).orElse(null);
+        CartItem existingItem = cartItemRepo.findByCartIdAndProductId(cart.getId(), product.getId()).orElse(null);
 
-        if (itemFromDb != null) {
-            // Just update quantity
-            itemFromDb.setQuantity(itemFromDb.getQuantity() + quantity);
-            itemFromDb.setItemTotalPrice(itemFromDb.getProduct().getPrice() * itemFromDb.getQuantity());
-            cartRepo.save(cart);
-            return cartItemRepo.save(itemFromDb);
+        if (existingItem != null) {
+            // If the item exists, just update its quantity
+            existingItem.setQuantity(existingItem.getQuantity() + quantity);
+            existingItem.setItemTotalPrice(existingItem.getProduct().getPrice() * existingItem.getQuantity());
+            return cartItemRepo.save(existingItem);
         }
 
-        // Use try-catch to handle race conditions safely
-        try {
-            CartItem newItem = new CartItem();
-            newItem.setCart(cart);
-            newItem.setProduct(product);
-            newItem.setQuantity(quantity);
-            newItem.setItemTotalPrice(product.getPrice() * quantity);
-            cart.getCartItem().add(newItem);
-            cartRepo.save(cart);
-            return cartItemRepo.save(newItem);
-        } catch (DataIntegrityViolationException e) {
-            // If another thread already added the same item, just update it instead
-            CartItem existing = cartItemRepo.findByCartIdAndProductId(cart.getId(), product.getId())
-                    .orElseThrow();
-            existing.setQuantity(existing.getQuantity() + quantity);
-            existing.setItemTotalPrice(existing.getProduct().getPrice() * existing.getQuantity());
-            return cartItemRepo.save(existing);
-        }
+        // If the item was deleted previously in the same session, clear the persistence context first
+        cartRepo.flush();  // ensure DB sync
+        cartItemRepo.flush();  // clear any pending inserts/deletes
+
+        // Now create a fresh one safely
+        CartItem newItem = new CartItem();
+        newItem.setCart(cart);
+        newItem.setProduct(product);
+        newItem.setQuantity(quantity);
+        newItem.setItemTotalPrice(product.getPrice() * quantity);
+
+        cart.getCartItem().add(newItem);
+        return cartItemRepo.save(newItem);
     }
+
 
 
     @Transactional
