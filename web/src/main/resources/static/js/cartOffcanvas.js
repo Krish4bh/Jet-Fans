@@ -47,3 +47,23 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
+
+function updateQuantity(itemId, newQuantity) {
+  fetch(`/cart/update?itemId=${itemId}&quantity=${newQuantity}`, {
+    method: "POST",
+  })
+    .then((res) => res.text())
+    .then((data) => {
+      if (data === "success") {
+        // Refresh the offcanvas to show updated cart
+        fetch("/cart")
+          .then((response) => response.text())
+          .then((html) => {
+            document.getElementById("cart-body-container").innerHTML = html;
+          });
+      } else {
+        alert("Failed to update cart. Please try again.");
+      }
+    })
+    .catch((err) => console.error("Error updating cart:", err));
+}
