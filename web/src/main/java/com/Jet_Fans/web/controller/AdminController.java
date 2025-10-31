@@ -7,6 +7,7 @@ import com.Jet_Fans.web.entity.User;
 import com.Jet_Fans.web.service.AdminService;
 import com.Jet_Fans.web.service.ProductService;
 import com.Jet_Fans.web.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,9 +34,13 @@ public class AdminController {
     }
 
     @PostMapping("/admin/authentication")
-    public String verifyCredentials(@RequestParam String email, @RequestParam String password, Model model) {
+    public String verifyCredentials(@RequestParam String email, @RequestParam String password, Model model, HttpSession session) {
 
-        if (adminService.verifyAdmin(email, password)) {
+        Admin admin = adminService.getByEmailAndPassword(email, password);
+
+        if (admin != null) {
+
+            session.setAttribute("loggedInAdmin", admin);
             return "redirect:/admin/admin-home";
         }
 
@@ -44,7 +49,16 @@ public class AdminController {
     }
 
     @GetMapping("/admin/admin-home")
-    public String adminHome(Model model) {
+    public String adminHome(Model model, HttpSession session) {
+
+        Admin admin = (Admin) session.getAttribute("loggedInAdmin");
+
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
+
+        model.addAttribute("admin", admin);
+
         List<Admin> admins = adminService.getAll();
         List<User> users = userService.getAll();
         List<Product> products = productService.getAll();
