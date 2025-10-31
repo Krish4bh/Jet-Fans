@@ -40,9 +40,11 @@
           <p class="me-4 my-0 fs-4 fw-medium">Admin Dashboard</p>
         </div>
         <div>
-          <button class="btn btn-secondary me-5" id="logout-btn">
-            Log out
-          </button>
+          <form th:action="@{/admin/logout}" method="get">
+              <button class="btn btn-secondary me-5" id="logout-btn">
+                  Log out
+              </button>
+          </form>
         </div>
       </div>
     </nav>

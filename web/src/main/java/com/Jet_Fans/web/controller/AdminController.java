@@ -48,6 +48,13 @@ public class AdminController {
         return "admin-login";
     }
 
+    @GetMapping("/admin/logout")
+    public String logoutAdmin(HttpSession session) {
+        session.removeAttribute("loggedInAdmin");
+        return "redirect:/admin/login";
+    }
+
+
     @GetMapping("/admin/admin-home")
     public String adminHome(Model model, HttpSession session) {
 
