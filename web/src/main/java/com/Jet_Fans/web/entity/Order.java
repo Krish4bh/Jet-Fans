@@ -26,6 +26,31 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
+
+    private String phone;
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    private String paymentMethod;
+
     public Long getId() {
         return id;
     }
