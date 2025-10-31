@@ -60,5 +60,42 @@ public class OrderController {
         return "checkout-page";
     }
 
+    @PostMapping("/confirm-order")
+    public String confirmOrder(@RequestParam(required = false) String address,
+                               HttpSession session,
+                               Model model) {
+        User user = (User) session.getAttribute("loggedInUser");
+        if (user == null) {
+            return "redirect:/user/login?redirect=/checkout";
+        }
+
+        try {
+            Order saved = orderService.placeOrder(user, address);
+            model.addAttribute("orderConfirmed", true);
+            model.addAttribute("orderId", saved.getId());
+
+            // After order placed cart is cleared - show empty cart on page
+            model.addAttribute("cartItems", List.of());
+            model.addAttribute("totalPrice", 0.0);
+
+        } catch (IllegalStateException | IllegalArgumentException ex) {
+            // If cart empty or other problem, show message on checkout page
+            model.addAttribute("error", ex.getMessage());
+            Cart cart = cartService.getCartByUserId(user.getId());
+            if (cart != null) {
+                model.addAttribute("cartItems", cartItemService.findByCartId(cart.getId()));
+                model.addAttribute("totalPrice", cart.getTotalPrice());
+            } else {
+                model.addAttribute("cartItems", List.of());
+                model.addAttribute("totalPrice", 0.0);
+            }
+            model.addAttribute("orderConfirmed", false);
+            model.addAttribute("orderId", null);
+            return "checkout-page";
+        }
+        model.addAttribute("order", new Order());
+        model.addAttribute("user", user);
+        return "checkout-page";
+    }
 
 }
