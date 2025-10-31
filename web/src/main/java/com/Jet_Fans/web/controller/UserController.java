@@ -37,9 +37,10 @@ public class UserController {
     }
 
     @PostMapping("/user/register")
-    private String userRegister(@ModelAttribute("user") User user, Model model) {
+    private String userRegister(@ModelAttribute("user") User user, Model model, HttpSession session) {
         try {
             userService.createUser(user);
+            session.setAttribute("loggedInUser", user);
             return "redirect:/jet-fans/home";
         } catch (RuntimeException e) {
             model.addAttribute("regError", e.getMessage());
