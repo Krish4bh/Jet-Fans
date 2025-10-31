@@ -21,6 +21,10 @@ public class AdminService {
         return adminRepo.findById(id).orElseThrow(() -> new RuntimeException("Admin with id " + id + "not found."));
     }
 
+    public Admin getByEmailAndPassword(String email, String password) {
+        return adminRepo.findByEmailAndPassword(email, password);
+    }
+
     public void createAdmin(Admin admin) {
         adminRepo.save(admin);
     }
