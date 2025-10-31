@@ -208,7 +208,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    th:value="${user.fullName}"
+                    th:value="${user.name}"
                     readonly
                   />
                 </div>
@@ -231,14 +231,6 @@
                     placeholder="Enter phone number"
                     required
                   />
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Additional Notes</label>
-                  <textarea
-                    class="form-control"
-                    th:field="*{note}"
-                    placeholder="Any instructions..."
-                  ></textarea>
                 </div>
               </div>
             </div>
