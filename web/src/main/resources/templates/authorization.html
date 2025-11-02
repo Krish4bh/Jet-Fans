@@ -49,7 +49,7 @@
           id="login-form"
           method="post"
         >
-            <input type="hidden" name="redirect" th:value="${redirect}" />
+          <input type="hidden" name="redirect" th:value="${redirect}" />
           <div id="login-content">
             <div class="d-flex justify-content-center heading mt-4">
               <p class="heading">Welcome Back</p>
@@ -90,7 +90,7 @@
 
             <div>
               <p
-                class="error-msg ps-3 text-center"
+                class="error-msg text-center"
                 id="validation-error"
                 th:if="${loginError}"
                 th:text="${loginError}"
