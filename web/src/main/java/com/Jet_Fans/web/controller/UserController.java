@@ -1,7 +1,9 @@
 package com.Jet_Fans.web.controller;
 
 
+import com.Jet_Fans.web.entity.Order;
 import com.Jet_Fans.web.entity.User;
+import com.Jet_Fans.web.service.OrderService;
 import com.Jet_Fans.web.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +11,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private OrderService orderService;
 
     @GetMapping("/user/login")
     public String showLoginPage() {
@@ -49,10 +56,29 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user/profile/{id}")
-    private String userProfile(@PathVariable Long id, Model model) {
-        User user = userService.getById(id);
-        model.addAttribute("userDetails", user);
+    @GetMapping("/user/profile")
+    public String userProfile(HttpSession session,
+                              Model model,
+                              @RequestParam(defaultValue = "0") int page) {
+
+        User user = (User) session.getAttribute("loggedInUser");
+        if (user == null) {
+            return "redirect:/user/login";
+        }
+
+        int pageSize = 10;
+        List<Order> allOrders = orderService.getOrdersByUserId(user.getId());
+        int fromIndex = page * pageSize;
+        int toIndex = Math.min(fromIndex + pageSize, allOrders.size());
+        List<Order> pagedOrders = allOrders.subList(fromIndex, toIndex);
+
+        boolean hasMore = toIndex < allOrders.size();
+
+        model.addAttribute("user", user);
+        model.addAttribute("orders", pagedOrders);
+        model.addAttribute("hasMore", hasMore);
+        model.addAttribute("nextPage", page + 1);
+
         return "user-profile";
     }
 
