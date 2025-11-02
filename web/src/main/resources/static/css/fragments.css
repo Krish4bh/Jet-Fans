@@ -62,7 +62,8 @@ body {
 
 #LogIn-link,
 #ContactUs-link,
-#ShoppingCart-link {
+#ShoppingCart-link,
+#username {
   color: black !important;
 }
 
