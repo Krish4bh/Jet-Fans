@@ -24,7 +24,10 @@ public class OrderService {
 
     @Autowired
     private CartItemService cartItemService;
-    
+
+    public List<Order> getOrdersByUserId(Long userId) {
+        return orderRepo.findByUserId(userId);
+    }
     @Transactional
     public Order placeOrder(User user, String address) {
         if (user == null || user.getId() == null) {
