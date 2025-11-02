@@ -1,0 +1,126 @@
+body {
+  background-color: #ffffff;
+  font-family: "Inter", sans-serif;
+  color: #212529;
+}
+
+.profile-section {
+  max-width: 1200px;
+  margin: 60px auto;
+}
+
+.profile-info h3 {
+  font-weight: 600;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  color: #212529;
+  border-bottom: 2px solid #f1f1f1;
+  padding-bottom: 10px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid #f7f7f7;
+}
+
+.info-row span.key {
+  color: #6c757d;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.2px;
+}
+
+.info-row span.value {
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: #111;
+}
+
+.btn-edit {
+  margin-top: 24px;
+  background-color: #212529;
+  color: #fff;
+  border-radius: 6px;
+  padding: 7px 22px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+  background-color: #000;
+}
+
+.orders-section h3 {
+  font-weight: 600;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  color: #212529;
+  border-bottom: 2px solid #f1f1f1;
+  padding-bottom: 10px;
+}
+
+.order-card {
+  background-color: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 18px;
+  transition: all 0.2s ease-in-out;
+}
+
+.order-card:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.order-top {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.order-date {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+.show-more {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.show-more a {
+  color: #212529;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.show-more a:hover {
+  text-decoration: underline;
+}
+
+/* --- MODAL --- */
+.modal-content {
+  border-radius: 10px;
+}
+
+.modal-header {
+  background-color: #212529;
+  color: white;
+  border-bottom: none;
+}
+
+.form-control {
+  border-radius: 6px;
+}
+
+@media (max-width: 992px) {
+  .profile-section .row {
+    flex-direction: column;
+  }
+}
