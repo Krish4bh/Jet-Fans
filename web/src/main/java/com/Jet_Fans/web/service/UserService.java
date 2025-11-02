@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -63,10 +64,18 @@ public class UserService {
     }
 
     public User verifyUser(String email, String password) {
-        User user = userRepo.findByEmail(email).orElseThrow(() -> new RuntimeException("User with email " + email + " not found."));
-        if (user != null && user.getPassword().equals(password)) {
-            return user;
+        Optional<User> optionalUser = userRepo.findByEmail(email);
+
+        if (optionalUser.isEmpty()) {
+            throw new RuntimeException("Invalid email address entered");
         }
-        return null;
+
+        User user = optionalUser.get();
+
+        if (!user.getPassword().equals(password)) {
+            throw new RuntimeException("Invalid password entered");
+        }
+
+        return user;
     }
 }
