@@ -25,15 +25,16 @@ public class UserController {
                              @RequestParam String password,
                              HttpSession session,
                              Model model) {
+        try {
+            User user = userService.verifyUser(email, password);
 
-        User user = userService.verifyUser(email, password);
-
-        if (user != null) {
             session.setAttribute("loggedInUser", user);
             return "redirect:/jet-fans/home";
+
+        } catch (RuntimeException e) {
+            model.addAttribute("loginError", e.getMessage());
+            return "authorization"; // your login page
         }
-        model.addAttribute("loginError", "Invalid email or password");
-        return "authorization";
     }
 
     @PostMapping("/user/register")
