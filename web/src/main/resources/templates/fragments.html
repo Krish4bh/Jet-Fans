@@ -93,24 +93,26 @@
                     </div>
                   </form>
                   <li class="nav-item" th:if="${session.loggedInUser != null}">
-                    <span
-                      class="nav-link d-none d-lg-block text-dark p-0 pb-1 ms-4"
-                      id="username"
-                    >
-                      Hi,
-                      <em
-                        ><span
-                          th:text="${session.loggedInUser.name}"
-                          class=""
-                          style="
-                            font-family: 'Times New Roman', Times, serif;
-                            color: red;
-                            font-size: x-large;
-                          "
-                        >
-                        </span
-                      ></em>
-                    </span>
+                    <a th:href="@{/user/profile}" class="text-decoration-none">
+                      <span
+                        class="nav-link d-none d-lg-block text-dark p-0 pb-1 ms-4"
+                        id="username"
+                      >
+                        Hi,
+                        <em
+                          ><span
+                            th:text="${session.loggedInUser.name}"
+                            class=""
+                            style="
+                              font-family: 'Times New Roman', Times, serif;
+                              color: red;
+                              font-size: x-large;
+                            "
+                          >
+                          </span
+                        ></em>
+                      </span>
+                    </a>
                   </li>
 
                   <li class="nav-item" th:if="${session.loggedInUser == null}">
