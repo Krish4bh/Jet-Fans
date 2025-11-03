@@ -71,13 +71,33 @@
               </button>
 
               <ul class="nav d-flex ms-auto justify-content-center mt-4">
-                <li class="nav-item">
+                <li class="nav-item" th:if="${session.loggedInUser != null}">
+                  <a th:href="@{/user/profile}" class="text-decoration-none">
+                    <span
+                      class="nav-link d-none d-lg-block text-dark p-0 pb-1 ms-5"
+                      id="username"
+                    >
+                      Hi,
+                      <span
+                        th:text="${session.loggedInUser.name}"
+                        class=""
+                        style="
+                          font-family: Dancing Script, cursive;
+                          color: red;
+                          font-size: x-large;
+                        "
+                      >
+                      </span>
+                    </span>
+                  </a>
+                </li>
+
+                <li class="nav-item" th:if="${session.loggedInUser == null}">
                   <a
                     th:href="@{/jet-fans/login}"
-                    href="../Pre-Home/authorization.html"
                     class="nav-link d-none d-lg-block text-dark"
                     id="LogIn-link"
-                    >Log IN</a
+                    >Log In</a
                   >
                 </li>
                 <li class="nav-item">
@@ -146,7 +166,27 @@
           ></button>
         </div>
         <div class="offcanvas-body">
-          <p>Some content ...</p>
+          <a
+            th:href="@{/jet-fans/home}"
+            class="text-decoration-none fs-5 text-dark"
+            style="font-family: 'Times New Roman', Times, serif"
+            >Home</a
+          >
+          <br />
+          <a
+            th:href="@{/home/shop-now}"
+            class="text-decoration-none fs-5 text-dark"
+            style="font-family: 'Times New Roman', Times, serif"
+            >Products</a
+          >
+          <br />
+          <a
+            th:href="@{/admin/admin-home}"
+            class="text-decoration-none fs-5 text-dark"
+            style="font-family: 'Times New Roman', Times, serif"
+            >Admin dashboard</a
+          >
+          <hr class="text-seconday" />
         </div>
       </div>
 
