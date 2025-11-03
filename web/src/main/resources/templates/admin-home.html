@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Jet Fans</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -28,12 +28,12 @@
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center">
           <a th:href="@{/jet-fans/home}" class="text-decoration-none">
-              <p
-                      class="navbar-brand my-0 ms-5 me-0 p-0"
-                      style="font-family: Dancing Script, cursive; font-size: 40px"
-              >
-                  Jet Fans
-              </p>
+            <p
+              class="navbar-brand my-0 ms-5 me-0 p-0"
+              style="font-family: Dancing Script, cursive; font-size: 40px"
+            >
+              Jet Fans
+            </p>
           </a>
         </div>
         <div>
@@ -41,9 +41,9 @@
         </div>
         <div>
           <form th:action="@{/admin/logout}" method="get">
-              <button class="btn btn-secondary me-5" id="logout-btn">
-                  Log out
-              </button>
+            <button class="btn btn-secondary me-5" id="logout-btn">
+              Log out
+            </button>
           </form>
         </div>
       </div>
@@ -68,16 +68,6 @@
         <li class="nav-item">
           <button type="button" class="btn manage-btn products-tab m-3" id="">
             Products
-          </button>
-        </li>
-        <li class="nav-item">
-          <button type="button" class="btn manage-btn orders-tab m-3" id="">
-            Orders
-          </button>
-        </li>
-        <li class="nav-item">
-          <button type="button" class="btn manage-btn feedbacks-tab m-3" id="">
-            Feedbacks
           </button>
         </li>
       </ul>
@@ -840,9 +830,9 @@
                     <option class="select-option" value="" disabled selected>
                       Select
                     </option>
-                    <option value="ceiling-fan">Ceiling Fan</option>
-                    <option value="table-fan">Table Fan</option>
-                    <option value="standing-fan">Standing Fan</option>
+                    <option value="Ceiling fan">Ceiling Fan</option>
+                    <option value="Table fan">Table Fan</option>
+                    <option value="Standing-fan">Standing Fan</option>
                   </select>
                 </div>
               </div>
@@ -924,7 +914,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-body">
-            <form action="" class="form" method="post" id="remove-product-form">
+            <form action="" class="form" method="post" id="delete-product-form">
               <input type="hidden" name="id" id="remove-product-id" />
               <h6 class="fs-3 text-center mb-4">
                 Do you want to delete this product?
@@ -949,21 +939,16 @@
       </div>
     </div>
 
-    <div class="orders-content d-none">
-      <h3>Orders Section</h3>
-    </div>
+    <div style="margin-top: 250px; margin-bottom: 250px"></div>
 
-    <div class="feedbacks-content d-none">
-      <h3>Feedbacks Section</h3>
-    </div>
-
-    <script th:src="@{/js/admin-home.js}"></script>
-    <script src="/web/src/main/resources/static/js/admin-home.js"></script>
+    <div th:replace="~{fragments :: footer}"></div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+
+    <script th:src="@{/js/admin-home.js}"></script>
   </body>
 </html>
