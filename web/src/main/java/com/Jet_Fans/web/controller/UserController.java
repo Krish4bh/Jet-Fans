@@ -82,6 +82,24 @@ public class UserController {
         return "user-profile";
     }
 
+    @PostMapping("/user/update-profile")
+    public String updateProfile(@ModelAttribute User updatedUser, HttpSession session) {
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+
+        if (loggedInUser == null) {
+            return "redirect:/user/login";
+        }
+
+        loggedInUser.setName(updatedUser.getName());
+        loggedInUser.setPhone(updatedUser.getPhone());
+        loggedInUser.setAddress(updatedUser.getAddress());
+
+        userService.updateUser(loggedInUser);
+        session.setAttribute("loggedInUser", loggedInUser);
+
+        return "redirect:/user/profile";
+    }
+
     @PostMapping("/user/update-user")
     private String editUser(User user) {
         userService.updateUser(user);
