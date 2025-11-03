@@ -95,22 +95,20 @@
                   <li class="nav-item" th:if="${session.loggedInUser != null}">
                     <a th:href="@{/user/profile}" class="text-decoration-none">
                       <span
-                        class="nav-link d-none d-lg-block text-dark p-0 pb-1 ms-4"
+                        class="nav-link d-none d-lg-block text-dark p-0 pb-1 ms-5"
                         id="username"
                       >
                         Hi,
-                        <em
-                          ><span
-                            th:text="${session.loggedInUser.name}"
-                            class=""
-                            style="
-                              font-family: 'Times New Roman', Times, serif;
-                              color: red;
-                              font-size: x-large;
-                            "
-                          >
-                          </span
-                        ></em>
+                        <span
+                          th:text="${session.loggedInUser.name}"
+                          class=""
+                          style="
+                            font-family: Dancing Script, cursive;
+                            color: red;
+                            font-size: x-large;
+                          "
+                        >
+                        </span>
                       </span>
                     </a>
                   </li>
@@ -181,7 +179,7 @@
           aria-labelledby="offcanvasLabel"
         >
           <div class="offcanvas-header">
-            <h4 class="offcanvas-title" id="offcanvasLabel">SideBar</h4>
+            <h4 class="offcanvas-title" id="offcanvasLabel">Menu</h4>
             <button
               class="btn-close"
               type="button"
@@ -190,7 +188,27 @@
             ></button>
           </div>
           <div class="offcanvas-body">
-            <p>Some content ...</p>
+            <a
+              th:href="@{/jet-fans/home}"
+              class="text-decoration-none fs-5 text-dark"
+              style="font-family: 'Times New Roman', Times, serif"
+              >Home</a
+            >
+            <br />
+            <a
+              th:href="@{/home/shop-now}"
+              class="text-decoration-none fs-5 text-dark"
+              style="font-family: 'Times New Roman', Times, serif"
+              >Products</a
+            >
+            <br />
+            <a
+              th:href="@{/admin/admin-home}"
+              class="text-decoration-none fs-5 text-dark"
+              style="font-family: 'Times New Roman', Times, serif"
+              >Admin dashboard</a
+            >
+            <hr class="text-seconday" />
           </div>
         </div>
       </nav>
