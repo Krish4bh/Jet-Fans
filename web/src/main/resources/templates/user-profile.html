@@ -106,11 +106,7 @@
                 <div class="flex-grow-1">
                   <h6 th:text="${product.title}" class="mb-1"></h6>
                   <small class="text-muted">
-                    Qty:
-                    <span
-                      th:text="${product.quantity != null ? product.quantity : 1}"
-                    ></span>
-                    | ₹<span th:text="${product.price}"></span>
+                    ₹<span th:text="${product.price}"></span>
                   </small>
                 </div>
               </div>
