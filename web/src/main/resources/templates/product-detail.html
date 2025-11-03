@@ -234,6 +234,7 @@
           </div>
           <div class="modal-body">
             <form th:action="@{/feedback/add}" method="post" class="form">
+              <input type="hidden" name="rating" id="rating-value" value="0" />
               <input type="hidden" id="user-id" name="userId" />
               <input
                 type="hidden"
@@ -326,6 +327,17 @@
             wrap: true,
           });
         }
+      });
+    </script>
+
+    <script>
+      document.querySelectorAll(".star-rating .star").forEach((star, index) => {
+        star.addEventListener("click", () => {
+          document.getElementById("rating-value").value = index + 1;
+          document.querySelectorAll(".star").forEach((s, i) => {
+            s.classList.toggle("text-warning", i <= index);
+          });
+        });
       });
     </script>
 
