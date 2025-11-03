@@ -67,4 +67,8 @@ public class OrderService {
 
         return saved;
     }
+
+    public List<Order> findOrdersByUser(User user) {
+        return orderRepo.findByUserOrderByCreatedAtDesc(user);
+    }
 }

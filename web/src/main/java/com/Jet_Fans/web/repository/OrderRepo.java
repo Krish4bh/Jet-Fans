@@ -1,5 +1,6 @@
 package com.Jet_Fans.web.repository;
 
+import com.Jet_Fans.web.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import com.Jet_Fans.web.entity.Order;
@@ -12,5 +13,7 @@ public interface OrderRepo extends JpaRepository<Order, Long> {
     public List<Order> getAllByUserId(Long userId);
 
     List<Order> findByUserId(Long userId);
+
+    List<Order> findByUserOrderByCreatedAtDesc(User user);
 
 }
