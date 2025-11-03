@@ -170,26 +170,27 @@ public class ProductController {
 
     // Helper method to save images to disk
     private String saveImage(MultipartFile file) throws IOException {
-        // Define upload directory relative to resources/static
+        // upload directory inside resources/static
         String uploadDir = "src/main/resources/static/Product-Imgs/";
 
-        // Create directory if it doesn't exist
         Path uploadPath = Paths.get(uploadDir);
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
 
-        // Generate unique filename with timestamp and UUID
         String originalFilename = file.getOriginalFilename();
-        String extension = originalFilename != null ? originalFilename.substring(originalFilename.lastIndexOf(".")) : ".jpg";
+        String extension = originalFilename != null && originalFilename.contains(".")
+                ? originalFilename.substring(originalFilename.lastIndexOf("."))
+                : ".jpg";
         String fileName = System.currentTimeMillis() + "_" + UUID.randomUUID().toString() + extension;
 
-        // Save file
+        // Save file to static folder
         Path filePath = uploadPath.resolve(fileName);
         Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
         System.out.println("Image saved: " + fileName);
-        return "/Product-Imgs/" + fileName;
+        // return only the filename (no leading /Product-Imgs/)
+        return fileName;
     }
 
     // Helper method to delete old images from disk
@@ -198,13 +199,23 @@ public class ProductController {
             return;
         }
 
+        // upload dir path
         String uploadDir = "src/main/resources/static/Product-Imgs/";
 
         for (String imageUrl : imageUrls) {
             try {
-                Path imagePath = Paths.get(uploadDir + imageUrl);
+                // imageUrl might be stored with a leading path ("/Product-Imgs/filename")
+                // so normalize to only filename
+                String filename = imageUrl;
+                if (filename.startsWith("/")) {
+                    filename = filename.substring(filename.lastIndexOf("/") + 1);
+                } else if (filename.contains("/")) {
+                    filename = Paths.get(filename).getFileName().toString();
+                }
+
+                Path imagePath = Paths.get(uploadDir).resolve(filename);
                 Files.deleteIfExists(imagePath);
-                System.out.println("Deleted old image: " + imageUrl);
+                System.out.println("Deleted old image: " + filename);
             } catch (IOException e) {
                 System.err.println("Failed to delete image: " + imageUrl);
                 e.printStackTrace();

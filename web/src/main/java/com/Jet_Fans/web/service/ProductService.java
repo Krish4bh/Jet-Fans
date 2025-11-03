@@ -1,7 +1,9 @@
 package com.Jet_Fans.web.service;
 
 import com.Jet_Fans.web.entity.Product;
+import com.Jet_Fans.web.repository.CartItemRepo;
 import com.Jet_Fans.web.repository.ProductRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,9 @@ public class ProductService {
 
     @Autowired
     private ProductRepo productRepo;
+
+    @Autowired
+    private CartItemRepo cartItemRepo;
 
     public void createProduct(Product product) {
         productRepo.save(product);
@@ -57,7 +62,17 @@ public class ProductService {
         productRepo.save(productFromDb);
     }
 
+    @Transactional
     public void deleteProduct(Long id) {
+        // delete cart items referencing this product first (to avoid FK constraint)
+        try {
+            cartItemRepo.deleteByProductId(id);
+        } catch (Exception ex) {
+            // log but continue; we still attempt product deletion and bubble up if needed
+            System.err.println("Error deleting cart items for product " + id + ": " + ex.getMessage());
+        }
+
+        // finally delete the product
         productRepo.deleteById(id);
     }
 }
