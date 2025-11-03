@@ -26,13 +26,25 @@ public class CartItemService {
         CartItem existingItem = cartItemRepo.findByCartIdAndProductId(cart.getId(), product.getId()).orElse(null);
 
         if (existingItem != null) {
-            // If the item exists, just update its quantity
+            // If the item exists, just update its quantity and itemTotalPrice
             existingItem.setQuantity(existingItem.getQuantity() + quantity);
             existingItem.setItemTotalPrice(existingItem.getProduct().getPrice() * existingItem.getQuantity());
-            return cartItemRepo.save(existingItem);
+
+            // persist the updated item
+            CartItem saved = cartItemRepo.save(existingItem);
+
+            // Recompute cart total and save cart
+            double cartTotal = cart.getCartItem().stream()
+                    .mapToDouble(CartItem::getItemTotalPrice)
+                    .sum();
+            cart.setTotalPrice(cartTotal);
+            cartRepo.save(cart);
+
+            return saved;
         }
 
         // If the item was deleted previously in the same session, clear the persistence context first
+        // (flush calls kept as you had them)
         cartRepo.flush();  // ensure DB sync
         cartItemRepo.flush();  // clear any pending inserts/deletes
 
@@ -43,8 +55,25 @@ public class CartItemService {
         newItem.setQuantity(quantity);
         newItem.setItemTotalPrice(product.getPrice() * quantity);
 
-        cart.getCartItem().add(newItem);
-        return cartItemRepo.save(newItem);
+        // Save the CartItem (so it has an ID and is persisted)
+        CartItem savedNew = cartItemRepo.save(newItem);
+
+        // Ensure cart's list contains the saved item (if not already)
+        if (cart.getCartItem() == null) {
+            cart.setCartItem(new java.util.ArrayList<>());
+        }
+        if (!cart.getCartItem().contains(savedNew)) {
+            cart.getCartItem().add(savedNew);
+        }
+
+        // Recompute cart total and save cart
+        double cartTotal = cart.getCartItem().stream()
+                .mapToDouble(CartItem::getItemTotalPrice)
+                .sum();
+        cart.setTotalPrice(cartTotal);
+        cartRepo.save(cart);
+
+        return savedNew;
     }
 
 
