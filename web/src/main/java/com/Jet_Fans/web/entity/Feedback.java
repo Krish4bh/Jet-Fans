@@ -1,5 +1,4 @@
 package com.Jet_Fans.web.entity;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

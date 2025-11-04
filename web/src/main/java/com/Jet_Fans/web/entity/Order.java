@@ -26,7 +26,6 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-
     private String phone;
 
     public void setCreatedAt(LocalDateTime createdAt) {

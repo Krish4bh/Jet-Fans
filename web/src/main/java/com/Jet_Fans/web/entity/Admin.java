@@ -1,6 +1,4 @@
 package com.Jet_Fans.web.entity;
-
-
 import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Value;
 
