@@ -179,6 +179,9 @@
                     id="reg-password-input"
                     class="form-control"
                     placeholder="Password"
+                    required
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
+                    title="Password must be at least 8 characters long, include one uppercase, one lowercase, one number, and one special character."
                   />
                   <label for="reg-password-input" class="form-label label" id=""
                     >Password</label
