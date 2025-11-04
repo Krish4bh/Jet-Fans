@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,6 +29,7 @@ public class OrderService {
     public List<Order> getOrdersByUserId(Long userId) {
         return orderRepo.findByUserId(userId);
     }
+
     @Transactional
     public Order placeOrder(User user, String address) {
         if (user == null || user.getId() == null) {
@@ -71,4 +73,27 @@ public class OrderService {
     public List<Order> findOrdersByUser(User user) {
         return orderRepo.findByUserOrderByCreatedAtDesc(user);
     }
+
+    @Transactional(readOnly = true)
+    public List<Order> getAllOrders() {
+        return orderRepo.findAll();
+    }
+
+    public void cancelOrderById(Long orderId) {
+        Optional<Order> optionalOrder = orderRepo.findById(orderId);
+        if (optionalOrder.isPresent()) {
+            Order order = optionalOrder.get();
+
+            try {
+
+                 orderRepo.delete(order);
+
+            } catch (Exception e) {
+                throw new RuntimeException("Error cancelling order: " + e.getMessage());
+            }
+        } else {
+            throw new RuntimeException("Order not found with ID: " + orderId);
+        }
+    }
+
 }
