@@ -37,13 +37,25 @@
           </a>
         </div>
         <div>
-          <p class="me-4 my-0 fs-4 fw-medium">Admin Dashboard</p>
+          <p class="my-0 fs-4 fw-medium">Admin Dashboard</p>
         </div>
-        <div>
-          <form th:action="@{/admin/logout}" method="get">
-            <button class="btn btn-secondary me-5" id="logout-btn">
-              Log out
-            </button>
+        <div class="d-flex align-items-center me-5">
+          <div th:if="${session.loggedInAdmin != null}" class="me-3">
+            <span class="text-dark fs-5">
+              Hi,
+              <span
+                th:text="${session.loggedInAdmin.name}"
+                style="
+                  font-family: 'Dancing Script', cursive;
+                  color: red;
+                  font-size: x-large;
+                "
+              ></span>
+            </span>
+          </div>
+
+          <form th:action="@{/admin/logout}" method="get" class="m-0">
+            <button class="btn btn-secondary" id="logout-btn">Log out</button>
           </form>
         </div>
       </div>
@@ -69,6 +81,16 @@
           <button type="button" class="btn manage-btn products-tab m-3" id="">
             Products
           </button>
+        </li>
+        <li class="nav-item">
+          <a
+            th:href="@{/admin/manage-orders-feedbacks}"
+            type="button"
+            class="btn manage-btn products-tab m-3"
+            id=""
+          >
+            Orders & Feedbacks
+          </a>
         </li>
       </ul>
     </nav>
