@@ -370,7 +370,7 @@
 
                 <div class="row justify-content-between">
                   <div class="col-auto ms-3">
-                    <input class="" type="radio" />
+                    <input class="" type="radio" required />
                   </div>
                   <div class="col-auto me-3">
                     <span class="text-dark fw-semibold fs-5"
@@ -379,16 +379,6 @@
                   </div>
                 </div>
                 <hr />
-                <select class="form-select mb-3" th:field="*{paymentMethod}">
-                  <option value="CARD" default selected>
-                    Credit/Debit Card
-                  </option>
-                  <option value="HDFC">HDFC Credit Card</option>
-                  <option value="IDFC">IDFC Credit Card</option>
-                  <option value="IDFC">One Card</option>
-                  <option value="IDFC">ICICI Debit Card</option>
-                  <option value="IDFC">American Express Platinum Card</option>
-                </select>
                 <button type="submit" class="btn btn-primary w-100">
                   Confirm Order
                 </button>
