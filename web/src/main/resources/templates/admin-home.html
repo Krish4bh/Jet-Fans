@@ -168,27 +168,6 @@
             </div>
           </div>
           <div class="col-3"></div>
-          <div class="col-4">
-            <h5 class="text-center">Statistics</h5>
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">Users</th>
-                  <th scope="col">Products</th>
-                  <th scope="col">Orders</th>
-                  <th scope="col">Feedbacks</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="text-body-secondary" scope="row"></td>
-                  <td class="text-body-secondary" scope="row"></td>
-                  <td class="text-body-secondary" scope="row"></td>
-                  <td class="text-body-secondary" scope="row"></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
       </div>
 
@@ -262,6 +241,9 @@
                         id="editPassword"
                         placeholder="Password"
                         name="password"
+                        required
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
+                        title="Password must be at least 8 characters long, include one uppercase, one lowercase, one number, and one special character."
                       />
                     </div>
                   </div>
@@ -339,6 +321,9 @@
                       id="addPassword"
                       name="password"
                       placeholder="Password"
+                      required
+                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
+                      title="Password must be at least 8 characters long, include one uppercase, one lowercase, one number, and one special character."
                     />
                   </div>
                 </div>
@@ -537,6 +522,9 @@
                     placeholder="Password"
                     class="form-control edit-user-input"
                     id="edit-user-password"
+                    required
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
+                    title="Password must be at least 8 characters long, include one uppercase, one lowercase, one number, and one special character."
                   />
                 </div>
               </div>
